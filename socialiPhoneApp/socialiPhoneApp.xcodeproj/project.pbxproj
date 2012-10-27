@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		087D7F8D163C105500A392DE /* Splashscreen-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 087D7F8C163C105500A392DE /* Splashscreen-568h@2x.png */; };
 		49EB2B2B15430EF400BE61F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB2B2A15430EF400BE61F1 /* UIKit.framework */; };
 		49EB2B2D15430EF400BE61F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB2B2C15430EF400BE61F1 /* Foundation.framework */; };
 		49EB2B2F15430EF400BE61F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB2B2E15430EF400BE61F1 /* CoreGraphics.framework */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		087D7F8C163C105500A392DE /* Splashscreen-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Splashscreen-568h@2x.png"; path = "../../../Splashscreen-568h@2x.png"; sourceTree = "<group>"; };
 		49EB2B2615430EF400BE61F1 /* socialiPhoneApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = socialiPhoneApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EB2B2A15430EF400BE61F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		49EB2B2C15430EF400BE61F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -47,6 +49,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		087D7F85163C0E5700A392DE /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				087D7F86163C0E5700A392DE /* Images */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
+		087D7F86163C0E5700A392DE /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				087D7F8C163C105500A392DE /* Splashscreen-568h@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		49EB2B1B15430EF400BE61F1 = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +100,7 @@
 				49EB2B3C15430EF400BE61F1 /* MainStoryboard.storyboard */,
 				49EB2B3F15430EF400BE61F1 /* ViewController.h */,
 				49EB2B4015430EF400BE61F1 /* ViewController.m */,
+				087D7F85163C0E5700A392DE /* Ressources */,
 				49EB2B3115430EF400BE61F1 /* Supporting Files */,
 			);
 			path = socialiPhoneApp;
@@ -151,6 +170,7 @@
 			files = (
 				49EB2B3515430EF400BE61F1 /* InfoPlist.strings in Resources */,
 				49EB2B3E15430EF400BE61F1 /* MainStoryboard.storyboard in Resources */,
+				087D7F8D163C105500A392DE /* Splashscreen-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +260,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "socialiPhoneApp/socialiPhoneApp-Prefix.pch";
 				INFOPLIST_FILE = "socialiPhoneApp/socialiPhoneApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -251,7 +273,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "socialiPhoneApp/socialiPhoneApp-Prefix.pch";
 				INFOPLIST_FILE = "socialiPhoneApp/socialiPhoneApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -275,6 +299,7 @@
 				49EB2B4615430EF400BE61F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
