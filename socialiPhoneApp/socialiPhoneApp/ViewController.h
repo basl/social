@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *hostTextfield;
+@property (weak, nonatomic) IBOutlet UITextField *jIDTextfield;
+@property (weak, nonatomic) IBOutlet UITextField *pwdTextfield;
+- (IBAction)clickDone:(id)sender;
 
 @end

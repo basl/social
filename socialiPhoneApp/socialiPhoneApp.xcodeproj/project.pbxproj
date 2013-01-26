@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08301E0316ADDF5100599753 /* SOXMPPController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08301E0216ADDF5100599753 /* SOXMPPController.m */; };
 		086B2E8516A604FA003EDEE7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 086B2E8216A604FA003EDEE7 /* Default-568h@2x.png */; };
 		086B2E8616A604FA003EDEE7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 086B2E8316A604FA003EDEE7 /* Default.png */; };
 		086B2E8716A604FA003EDEE7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 086B2E8416A604FA003EDEE7 /* Default@2x.png */; };
@@ -50,6 +51,8 @@
 		086B2F1616A608CE003EDEE7 /* RFImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 086B2EFD16A608CE003EDEE7 /* RFImageToDataTransformer.m */; };
 		086B2F1716A608CE003EDEE7 /* XMPPIDTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 086B2EFF16A608CE003EDEE7 /* XMPPIDTracker.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		086B2F1816A608CE003EDEE7 /* XMPPSRVResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 086B2F0116A608CE003EDEE7 /* XMPPSRVResolver.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		08797BB116A74C40002E5173 /* XMPPReconnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 08797BB016A74C40002E5173 /* XMPPReconnect.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		08797BB416A7510D002E5173 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08797BB316A7510D002E5173 /* SystemConfiguration.framework */; };
 		49EB2B2B15430EF400BE61F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB2B2A15430EF400BE61F1 /* UIKit.framework */; };
 		49EB2B2D15430EF400BE61F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB2B2C15430EF400BE61F1 /* Foundation.framework */; };
 		49EB2B2F15430EF400BE61F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB2B2E15430EF400BE61F1 /* CoreGraphics.framework */; };
@@ -61,6 +64,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		081A9D9E16B48030002BDF37 /* SOLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOLogging.h; sourceTree = "<group>"; };
+		08301E0116ADDF5100599753 /* SOXMPPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOXMPPController.h; sourceTree = "<group>"; };
+		08301E0216ADDF5100599753 /* SOXMPPController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOXMPPController.m; sourceTree = "<group>"; };
 		086B2E8216A604FA003EDEE7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		086B2E8316A604FA003EDEE7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		086B2E8416A604FA003EDEE7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -147,6 +153,9 @@
 		086B2EFF16A608CE003EDEE7 /* XMPPIDTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPIDTracker.m; sourceTree = "<group>"; };
 		086B2F0016A608CE003EDEE7 /* XMPPSRVResolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPSRVResolver.h; sourceTree = "<group>"; };
 		086B2F0116A608CE003EDEE7 /* XMPPSRVResolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPSRVResolver.m; sourceTree = "<group>"; };
+		08797BAF16A74C40002E5173 /* XMPPReconnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPReconnect.h; sourceTree = "<group>"; };
+		08797BB016A74C40002E5173 /* XMPPReconnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPReconnect.m; sourceTree = "<group>"; };
+		08797BB316A7510D002E5173 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		49EB2B2615430EF400BE61F1 /* socialiPhoneApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = socialiPhoneApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EB2B2A15430EF400BE61F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		49EB2B2C15430EF400BE61F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -167,6 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08797BB416A7510D002E5173 /* SystemConfiguration.framework in Frameworks */,
 				086B2E8D16A60660003EDEE7 /* CFNetwork.framework in Frameworks */,
 				086B2E8B16A60656003EDEE7 /* Security.framework in Frameworks */,
 				086B2E8916A6064F003EDEE7 /* libresolv.dylib in Frameworks */,
@@ -279,6 +289,7 @@
 		086B2EC516A608CE003EDEE7 /* XMPPFramework */ = {
 			isa = PBXGroup;
 			children = (
+				08797BAD16A74C40002E5173 /* Extensions */,
 				086B2EC616A608CE003EDEE7 /* Authentication */,
 				086B2EDA16A608CE003EDEE7 /* Categories */,
 				086B2EE116A608CE003EDEE7 /* Core */,
@@ -414,6 +425,23 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		08797BAD16A74C40002E5173 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				08797BAE16A74C40002E5173 /* Reconnect */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		08797BAE16A74C40002E5173 /* Reconnect */ = {
+			isa = PBXGroup;
+			children = (
+				08797BAF16A74C40002E5173 /* XMPPReconnect.h */,
+				08797BB016A74C40002E5173 /* XMPPReconnect.m */,
+			);
+			path = Reconnect;
+			sourceTree = "<group>";
+		};
 		087D7F85163C0E5700A392DE /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
@@ -448,6 +476,7 @@
 				086B2E9216A6073D003EDEE7 /* CocoaLumberjack */,
 				086B2E8E16A606F8003EDEE7 /* CocoaAsyncSocket */,
 				086B2E8816A6064F003EDEE7 /* libresolv.dylib */,
+				08797BB316A7510D002E5173 /* SystemConfiguration.framework */,
 				086B2E8C16A60660003EDEE7 /* CFNetwork.framework */,
 				086B2E8A16A60656003EDEE7 /* Security.framework */,
 				49EB2B2A15430EF400BE61F1 /* UIKit.framework */,
@@ -465,6 +494,8 @@
 				49EB2B3C15430EF400BE61F1 /* MainStoryboard.storyboard */,
 				49EB2B3F15430EF400BE61F1 /* ViewController.h */,
 				49EB2B4015430EF400BE61F1 /* ViewController.m */,
+				08301E0116ADDF5100599753 /* SOXMPPController.h */,
+				08301E0216ADDF5100599753 /* SOXMPPController.m */,
 				087D7F85163C0E5700A392DE /* Ressources */,
 				49EB2B3115430EF400BE61F1 /* Supporting Files */,
 			);
@@ -478,6 +509,7 @@
 				49EB2B3315430EF400BE61F1 /* InfoPlist.strings */,
 				49EB2B3615430EF400BE61F1 /* main.m */,
 				49EB2B3815430EF400BE61F1 /* socialiPhoneApp-Prefix.pch */,
+				081A9D9E16B48030002BDF37 /* SOLogging.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -587,6 +619,8 @@
 				086B2F1616A608CE003EDEE7 /* RFImageToDataTransformer.m in Sources */,
 				086B2F1716A608CE003EDEE7 /* XMPPIDTracker.m in Sources */,
 				086B2F1816A608CE003EDEE7 /* XMPPSRVResolver.m in Sources */,
+				08797BB116A74C40002E5173 /* XMPPReconnect.m in Sources */,
+				08301E0316ADDF5100599753 /* SOXMPPController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
