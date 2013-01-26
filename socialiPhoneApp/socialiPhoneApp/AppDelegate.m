@@ -7,6 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "SOXMPPController.h"
+
+#import "SOLogging.h"
+#import "DDTTYLogger.h"
+
 
 @implementation AppDelegate
 
@@ -14,7 +19,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    // Configure logging framework
+	[DDLog addLogger:[DDTTYLogger sharedInstance]];
+    
     return YES;
 }
 							
