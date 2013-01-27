@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "SOXMPPController.h"
+#import "SORosterViewController.h"
 
 @interface ViewController ()
 
@@ -37,7 +38,12 @@
     [xmppController setHost:self.hostTextfield.text];
     [xmppController setJabberID:self.jIDTextfield.text];
     [xmppController setPassword:self.pwdTextfield.text];
-    [xmppController connect];
+    if ([xmppController connect])
+    {
+        SORosterViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"SORosterViewController"];
+
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 #pragma mark - UI Methods

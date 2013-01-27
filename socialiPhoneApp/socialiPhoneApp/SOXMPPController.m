@@ -7,11 +7,8 @@
 //
 
 #import "SOXMPPController.h"
-
+#import "XMPPFramework.h"
 #import "SOLogging.h"
-
-#import "XMPP.h"
-#import "XMPPReconnect.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -23,6 +20,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 @interface SOXMPPController ()
 @property (nonatomic, strong, readonly) XMPPStream *xmppStream;
 @property (nonatomic, strong, readonly) XMPPReconnect *xmppReconnect;
+@property (nonatomic, strong, readonly) XMPPRoster *xmppRoster;
+@property (nonatomic, strong, readonly) XMPPRosterCoreDataStorage *xmppRosterStorage;
 
 @property BOOL allowSelfSignedCertificates;
 @property BOOL allowSSLHostNameMismatch;
@@ -54,13 +53,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     return self;
 }
 
-- (void)goOnline
+- (void)dealloc
 {
-	XMPPPresence *presence = [XMPPPresence presence]; // type="available" is implicit
-	
-	[self.xmppStream sendElement:presence];
-    
-    DDLogVerbose(@"Going online");
+	[self teardownStream];
 }
 
 - (void)setupStream
@@ -108,15 +103,15 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	// You can do it however you like! It's your application.
 	// But you do need to provide the roster with some storage facility.
 	
-	/*
-     xmppRosterStorage = [[XMPPRosterCoreDataStorage alloc] init];
+	
+     _xmppRosterStorage = [[XMPPRosterCoreDataStorage alloc] init];
      //	xmppRosterStorage = [[XMPPRosterCoreDataStorage alloc] initWithInMemoryStore];
      
-     xmppRoster = [[XMPPRoster alloc] initWithRosterStorage:xmppRosterStorage];
+     _xmppRoster = [[XMPPRoster alloc] initWithRosterStorage:self.xmppRosterStorage];
      
-     xmppRoster.autoFetchRoster = YES;
-     xmppRoster.autoAcceptKnownPresenceSubscriptionRequests = YES;
-     */
+     self.xmppRoster.autoFetchRoster = YES;
+     self.xmppRoster.autoAcceptKnownPresenceSubscriptionRequests = YES;
+     
     
 	// Setup vCard support
 	//
@@ -160,15 +155,15 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	// Activate xmpp modules
     
 	[self.xmppReconnect     activate:self.xmppStream];
-	/*[xmppRoster            activate:xmppStream];
-     [xmppvCardTempModule   activate:xmppStream];
+	[self.xmppRoster        activate:self.xmppStream];
+     /*[xmppvCardTempModule   activate:xmppStream];
      [xmppvCardAvatarModule activate:xmppStream];
      [xmppCapabilities      activate:xmppStream];*/
     
 	// Add ourself as a delegate to anything we may be interested in
     
 	[self.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
-	//[xmppRoster addDelegate:self delegateQueue:dispatch_get_main_queue()];
+	[self.xmppRoster addDelegate:self delegateQueue:dispatch_get_main_queue()];
     
 	// Optional:
 	//
@@ -189,6 +184,36 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	self.allowSelfSignedCertificates = YES;
 	self.allowSSLHostNameMismatch = YES;
 }
+
+- (void)teardownStream
+{
+	[self.xmppStream removeDelegate:self];
+	[self.xmppRoster removeDelegate:self];
+	
+	[self.xmppReconnect         deactivate];
+	[self.xmppRoster            deactivate];
+	
+	[self.xmppStream disconnect];
+	
+	_xmppStream = nil;
+	_xmppReconnect = nil;
+    _xmppRoster = nil;
+	_xmppRosterStorage = nil;
+}
+
+
+- (void)goOnline
+{
+	XMPPPresence *presence = [XMPPPresence presence]; // type="available" is implicit
+	
+	[self.xmppStream sendElement:presence];
+    
+    DDLogVerbose(@"Going online");
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PUBLIC METHODS
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (BOOL)connect
 {
@@ -219,9 +244,18 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	return YES;
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Core Data
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (NSManagedObjectContext *)managedObjectContext_roster
+{
+	return [self.xmppRosterStorage mainThreadManagedObjectContext];
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark XMPPStream Delegate
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)xmppStream:(XMPPStream *)sender socketDidConnect:(GCDAsyncSocket *)socket
 {
@@ -311,6 +345,53 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	{
 		DDLogError(@"Unable to connect to server. Error: %@", [error userInfo]);
 	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark XMPPRosterDelegate
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
+{
+	DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+	
+	XMPPUserCoreDataStorageObject *user = [self.xmppRosterStorage userForJID:[presence from]
+	                                                         xmppStream:self.xmppStream
+	                                               managedObjectContext:[self managedObjectContext_roster]];
+	
+	NSString *displayName = [user displayName];
+	NSString *jidStrBare = [presence fromStr];
+	NSString *body = nil;
+	
+	if (![displayName isEqualToString:jidStrBare])
+	{
+		body = [NSString stringWithFormat:@"Buddy request from %@ <%@>", displayName, jidStrBare];
+	}
+	else
+	{
+		body = [NSString stringWithFormat:@"Buddy request from %@", displayName];
+	}
+	
+	
+	if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
+	{
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:displayName
+		                                                    message:body
+		                                                   delegate:nil
+		                                          cancelButtonTitle:@"Not implemented"
+		                                          otherButtonTitles:nil];
+		[alertView show];
+	}
+	else
+	{
+		// We are not active, so use a local notification instead
+		UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+		localNotification.alertAction = @"Not implemented";
+		localNotification.alertBody = body;
+		
+		[[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
+	}
+	
 }
 
 @end

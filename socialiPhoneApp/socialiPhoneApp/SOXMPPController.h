@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XMPPRoster.h"
 
-@interface SOXMPPController : NSObject
+@interface SOXMPPController : NSObject <XMPPRosterDelegate>
 
 @property (nonatomic, strong) NSString *jabberID;
 @property (nonatomic, strong) NSString *password;
@@ -25,5 +26,10 @@
  * @return TRUE, if the stream was or gets connected, FALSE otherwise.
  */
 - (BOOL)connect;
+
+/**
+ * Returns the Managed Object Context which is used by the roster module.
+ */
+- (NSManagedObjectContext *)managedObjectContext_roster;
 
 @end
