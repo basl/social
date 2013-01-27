@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "SOXMPPController.h"
 
 @interface ViewController ()
 
@@ -17,13 +18,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -31,4 +30,39 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (void)done
+{
+    SOXMPPController *xmppController = [SOXMPPController sharedInstance];
+    //TODO: check for correct jid and valid host
+    [xmppController setHost:self.hostTextfield.text];
+    [xmppController setJabberID:self.jIDTextfield.text];
+    [xmppController setPassword:self.pwdTextfield.text];
+    [xmppController connect];
+}
+
+#pragma mark - UI Methods
+
+- (IBAction)clickDone:(id)sender
+{
+    [self done];
+}
+
+
+#pragma mark - UITextfieldDelegate Methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	if (textField == self.hostTextfield) {
+		[textField resignFirstResponder];
+		[self.jIDTextfield becomeFirstResponder];
+	}
+	else if (textField == self.jIDTextfield) {
+		[textField resignFirstResponder];
+		[self.pwdTextfield becomeFirstResponder];
+	}
+	else if (textField == self.pwdTextfield) {
+		[textField resignFirstResponder];
+        [self done];
+	}
+	return YES;
+}
 @end
