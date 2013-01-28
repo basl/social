@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08177C4216B6F93E00D1173E /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 08177C4116B6F93E00D1173E /* KeychainItemWrapper.m */; };
+		08177C4616B6FAED00D1173E /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08177C4516B6FAED00D1173E /* PreferencesController.m */; };
 		08301E0316ADDF5100599753 /* SOXMPPController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08301E0216ADDF5100599753 /* SOXMPPController.m */; };
 		0831081716B5451300FDC40A /* XMPPGroupCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0831080216B5451300FDC40A /* XMPPGroupCoreDataStorageObject.m */; };
 		0831081816B5451300FDC40A /* XMPPResourceCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0831080416B5451300FDC40A /* XMPPResourceCoreDataStorageObject.m */; };
@@ -79,6 +81,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08177C4016B6F93E00D1173E /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		08177C4116B6F93E00D1173E /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		08177C4416B6FAED00D1173E /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
+		08177C4516B6FAED00D1173E /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		081A9D9E16B48030002BDF37 /* SOLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOLogging.h; sourceTree = "<group>"; };
 		08301E0116ADDF5100599753 /* SOXMPPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOXMPPController.h; sourceTree = "<group>"; };
 		08301E0216ADDF5100599753 /* SOXMPPController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOXMPPController.m; sourceTree = "<group>"; };
@@ -636,6 +642,10 @@
 		49EB2B3115430EF400BE61F1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				08177C4416B6FAED00D1173E /* PreferencesController.h */,
+				08177C4516B6FAED00D1173E /* PreferencesController.m */,
+				08177C4016B6F93E00D1173E /* KeychainItemWrapper.h */,
+				08177C4116B6F93E00D1173E /* KeychainItemWrapper.m */,
 				49EB2B3215430EF400BE61F1 /* socialiPhoneApp-Info.plist */,
 				49EB2B3315430EF400BE61F1 /* InfoPlist.strings */,
 				49EB2B3615430EF400BE61F1 /* main.m */,
@@ -767,6 +777,8 @@
 				0831083316B5486A00FDC40A /* NSDate+XMPPDateTimeProfiles.m in Sources */,
 				0831083416B5486A00FDC40A /* XMPPDateTimeProfiles.m in Sources */,
 				083B243C16B5701500BF9F9C /* SORosterViewController.m in Sources */,
+				08177C4216B6F93E00D1173E /* KeychainItemWrapper.m in Sources */,
+				08177C4616B6FAED00D1173E /* PreferencesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

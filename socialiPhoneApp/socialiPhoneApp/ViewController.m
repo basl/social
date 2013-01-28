@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "SOXMPPController.h"
 #import "SORosterViewController.h"
+#import "KeychainItemWrapper.h"
+#import "PreferencesController.h"
 
 @interface ViewController ()
 
@@ -19,6 +21,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    BOOL autoLog = [[PreferencesController getBoolPrefForName:CFSTR("autoLogin")] boolValue];
+    [self.autoLoginSwitch setOn:autoLog];
+    
+    if (autoLog)
+    {
+        KeychainItemWrapper *keychainPassword = [[KeychainItemWrapper alloc] initWithIdentifier:@"credentials" accessGroup:nil];
+        NSString *retPassword = [keychainPassword objectForKey:(__bridge id)kSecValueData];
+        NSString *retUser = [keychainPassword objectForKey:(__bridge id)kSecAttrAccount];
+        [self.jIDTextfield setText:retUser];
+        [self.pwdTextfield setText:retPassword];
+    }
 }
 
 - (void)viewDidUnload
@@ -50,7 +63,18 @@
 
 - (IBAction)clickDone:(id)sender
 {
+    if ([self.autoLoginSwitch isOn])
+    {
+        KeychainItemWrapper *keychainPassword = [[KeychainItemWrapper alloc] initWithIdentifier:@"credentials" accessGroup:nil];
+        [keychainPassword setObject:[self.pwdTextfield text] forKey:(__bridge id)kSecValueData];
+        [keychainPassword setObject:[self.jIDTextfield text] forKey:(__bridge id)kSecAttrAccount];
+    }
+    
     [self done];
+}
+
+- (IBAction)changeAutoLogin:(UISwitch *)sender {
+    [PreferencesController setBoolPref:[self.autoLoginSwitch isOn] forKey:CFSTR("autoLogin")];
 }
 
 

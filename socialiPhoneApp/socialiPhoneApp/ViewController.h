@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *hostTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *jIDTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *pwdTextfield;
+@property (weak, nonatomic) IBOutlet UISwitch *autoLoginSwitch;
 - (IBAction)clickDone:(id)sender;
+- (IBAction)changeAutoLogin:(UISwitch *)sender;
 
 @end
