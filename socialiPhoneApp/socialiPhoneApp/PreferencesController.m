@@ -8,7 +8,7 @@
 #import "PreferencesController.h"
 
 @interface PreferencesController(Private)
-+(NSString*)getDefaultPrefForName:(CFStringRef)name;
++(NSString*)getDefaultPrefForName:(NSString *)name;
 @end
 
 @implementation PreferencesController
@@ -18,48 +18,76 @@
 /**
  * Returns the saved integer for the name or 0, if none is defined jet.
  */
-+(int)getIntPrefForName:(CFStringRef)name
++(int)getIntPrefForName:(NSString *)name
 {
     Boolean isCorrect = false;
-    NSInteger ret = CFPreferencesGetAppIntegerValue(name, kCFPreferencesCurrentApplication, &isCorrect);
+    NSInteger ret = CFPreferencesGetAppIntegerValue((__bridge CFStringRef)(name), kCFPreferencesCurrentApplication, &isCorrect);
     return ret;
 }
 
-+(void)setIntPref:(int)value forKey:(CFStringRef)key
++(void)setIntPref:(int)value forKey:(NSString *)key
 {
     CFNumberRef n = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &value);
-    CFPreferencesSetAppValue(key, n, kCFPreferencesCurrentApplication);
+    CFPreferencesSetAppValue((__bridge CFStringRef)(key), n, kCFPreferencesCurrentApplication);
     CFRelease(n);
     CFPreferencesAppSynchronize(kCFPreferencesCurrentApplication);
 }
 
-+(NSString*)getBoolPrefForName:(CFStringRef)name
++(BOOL)getBoolPrefForName:(NSString *)name
 {
-    NSString* ret = NULL;
-    CFBooleanRef b = CFPreferencesCopyAppValue(name, kCFPreferencesCurrentApplication);
-    if (b) {
-        ret = CFBooleanGetValue(b) ? @"YES" : @"NO";
-    }
-    if (b) {
+    BOOL ret = NO;
+    CFBooleanRef b = CFPreferencesCopyAppValue((__bridge CFStringRef)(name), kCFPreferencesCurrentApplication);
+    if (b)
+    {
+        ret = CFBooleanGetValue(b) ? YES : NO;
         CFRelease(b);
-        return ret;
     }
-    return [PreferencesController getDefaultPrefForName:name];
+    else
+    {
+        ret = [[PreferencesController getDefaultPrefForName:name] boolValue];
+    }
+    return ret;
 }
 
-+(void)setBoolPref:(BOOL)value forKey:(CFStringRef)key
++(void)setBoolPref:(BOOL)value forKey:(NSString *)key
 {
-    if (value) {
-        CFPreferencesSetAppValue(key, kCFBooleanTrue, kCFPreferencesCurrentApplication);
-    } else {
-        CFPreferencesSetAppValue(key, kCFBooleanFalse, kCFPreferencesCurrentApplication);
+    if (value)
+    {
+        CFPreferencesSetAppValue((__bridge CFStringRef)(key), kCFBooleanTrue, kCFPreferencesCurrentApplication);
     }
+    else
+    {
+        CFPreferencesSetAppValue((__bridge CFStringRef)(key), kCFBooleanFalse, kCFPreferencesCurrentApplication);
+    }
+    CFPreferencesAppSynchronize(kCFPreferencesCurrentApplication);
+}
+
++(NSString*)getStringPrefForName:(NSString *)name
+{
+    NSString *ret = NULL;
+    CFPropertyListRef val = (CFPreferencesCopyAppValue((__bridge CFStringRef)(name), kCFPreferencesCurrentApplication));
+    if (val)
+    {
+        ret = (__bridge NSString *)val;
+        CFRelease(val);
+    }
+    else
+    {
+        ret = [PreferencesController getDefaultPrefForName:name];
+    }
+    return ret;
+}
+
++(void)setStringPref:(NSString *)value forKey:(NSString *)key
+{
+    CFStringRef s = (__bridge CFStringRef)(value);
+    CFPreferencesSetAppValue((__bridge CFStringRef)(key), s, kCFPreferencesCurrentApplication);
     CFPreferencesAppSynchronize(kCFPreferencesCurrentApplication);
 }
 
 #pragma mark - Private Methods
 
-+(NSString*)getDefaultPrefForName:(CFStringRef)name {
++(NSString*)getDefaultPrefForName:(NSString *)name {
     NSString *pathStr = [[NSBundle mainBundle] bundlePath];
     NSString *settingsBundlePath = [pathStr stringByAppendingPathComponent:@"Settings.bundle"];
     NSString *finalPath = [settingsBundlePath stringByAppendingPathComponent:@"Root.plist"];
@@ -72,7 +100,7 @@
     {
         NSString *keyValueStr = [prefItem objectForKey:@"Key"];
         id defaultValue = [prefItem objectForKey:@"DefaultValue"];
-        if ([keyValueStr isEqualToString:(__bridge NSString*)name])
+        if ([keyValueStr isEqualToString:name])
         {
             return (NSString*)defaultValue;
         }       

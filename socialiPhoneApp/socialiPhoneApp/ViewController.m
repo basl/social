@@ -11,6 +11,18 @@
 #import "SORosterViewController.h"
 #import "KeychainItemWrapper.h"
 #import "PreferencesController.h"
+#import "SOLogging.h"
+
+// Log levels: off, error, warn, info, verbose
+#if DEBUG
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+#else
+static const int ddLogLevel = LOG_LEVEL_INFO;
+#endif
+
+static NSString *AUTOLOGIN      = @"auto_login";
+static NSString *HOSTNAME       = @"host_name";
+static NSString *CREDENTIALS    = @"credentials";
 
 @interface ViewController ()
 
@@ -21,16 +33,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    BOOL autoLog = [[PreferencesController getBoolPrefForName:CFSTR("autoLogin")] boolValue];
+    BOOL autoLog = [PreferencesController getBoolPrefForName:AUTOLOGIN];
     [self.autoLoginSwitch setOn:autoLog];
     
     if (autoLog)
     {
-        KeychainItemWrapper *keychainPassword = [[KeychainItemWrapper alloc] initWithIdentifier:@"credentials" accessGroup:nil];
+        NSString *retHostName = [PreferencesController getStringPrefForName:HOSTNAME];
+        self.hostTextfield.text = retHostName;
+        
+        KeychainItemWrapper *keychainPassword = [[KeychainItemWrapper alloc] initWithIdentifier:CREDENTIALS accessGroup:nil];
+        NSString *retJID = [keychainPassword objectForKey:(__bridge id)kSecAttrAccount];
         NSString *retPassword = [keychainPassword objectForKey:(__bridge id)kSecValueData];
-        NSString *retUser = [keychainPassword objectForKey:(__bridge id)kSecAttrAccount];
-        [self.jIDTextfield setText:retUser];
-        [self.pwdTextfield setText:retPassword];
+        self.jIDTextfield.text = retJID;
+        self.pwdTextfield.text = retPassword;
+        
+        [self login];
     }
 }
 
@@ -44,7 +61,7 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-- (void)done
+- (void)login
 {
     SOXMPPController *xmppController = [SOXMPPController sharedInstance];
     //TODO: check for correct jid and valid host
@@ -57,6 +74,10 @@
 
         [self.navigationController pushViewController:controller animated:YES];
     }
+    else
+    {
+        //TODO: Handle connection error
+    }
 }
 
 #pragma mark - UI Methods
@@ -65,16 +86,20 @@
 {
     if ([self.autoLoginSwitch isOn])
     {
-        KeychainItemWrapper *keychainPassword = [[KeychainItemWrapper alloc] initWithIdentifier:@"credentials" accessGroup:nil];
-        [keychainPassword setObject:[self.pwdTextfield text] forKey:(__bridge id)kSecValueData];
-        [keychainPassword setObject:[self.jIDTextfield text] forKey:(__bridge id)kSecAttrAccount];
+        [PreferencesController setBoolPref:[self.autoLoginSwitch isOn] forKey:AUTOLOGIN];
+        [PreferencesController setStringPref:self.hostTextfield.text forKey:HOSTNAME];
+        
+        KeychainItemWrapper *keychainPassword = [[KeychainItemWrapper alloc] initWithIdentifier:CREDENTIALS accessGroup:nil];
+        [keychainPassword setObject:self.jIDTextfield.text forKey:(__bridge id)kSecAttrAccount];
+        [keychainPassword setObject:self.pwdTextfield.text forKey:(__bridge id)kSecValueData];
     }
     
-    [self done];
+    [self login];
 }
 
 - (IBAction)changeAutoLogin:(UISwitch *)sender {
-    [PreferencesController setBoolPref:[self.autoLoginSwitch isOn] forKey:CFSTR("autoLogin")];
+    [PreferencesController setBoolPref:[self.autoLoginSwitch isOn] forKey:AUTOLOGIN];
+    //TODO: Update (or delete) Credentials
 }
 
 
@@ -91,7 +116,7 @@
 	}
 	else if (textField == self.pwdTextfield) {
 		[textField resignFirstResponder];
-        [self done];
+        [self login];
 	}
 	return YES;
 }
