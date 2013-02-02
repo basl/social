@@ -1,0 +1,21 @@
+
+/* Class = "IBUITextField"; placeholder = "user@example.com"; ObjectID = "3hK-ns-8d2"; */
+"3hK-ns-8d2.placeholder" = "nutzer@beispiel.de";
+
+/* Class = "IBUILabel"; text = "Autologin"; ObjectID = "VXE-73-tuV"; */
+"VXE-73-tuV.text" = "Autologin";
+
+/* Class = "IBUILabel"; text = "Jabber-ID"; ObjectID = "WjC-hQ-DWj"; */
+"WjC-hQ-DWj.text" = "Jabber-ID";
+
+/* Class = "IBUILabel"; text = "Password"; ObjectID = "XQ9-tf-8eA"; */
+"XQ9-tf-8eA.text" = "Passwort";
+
+/* Class = "IBUITextField"; placeholder = "password"; ObjectID = "cl8-h5-TsH"; */
+"cl8-h5-TsH.placeholder" = "passwort";
+
+/* Class = "IBUILabel"; text = "Host"; ObjectID = "hyH-Rf-48g"; */
+"hyH-Rf-48g.text" = "Host";
+
+/* Class = "IBUITextField"; placeholder = "optional, may be an IP"; ObjectID = "kbv-vF-gb4"; */
+"kbv-vF-gb4.placeholder" = "optional, kann IP sein";

@@ -209,6 +209,9 @@
 		086B2EFF16A608CE003EDEE7 /* XMPPIDTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPIDTracker.m; sourceTree = "<group>"; };
 		086B2F0016A608CE003EDEE7 /* XMPPSRVResolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPSRVResolver.h; sourceTree = "<group>"; };
 		086B2F0116A608CE003EDEE7 /* XMPPSRVResolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPSRVResolver.m; sourceTree = "<group>"; };
+		0874C61916BD809E00674889 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		0874C61B16BD81CB00674889 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
+		0874C61C16BD81CB00674889 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		08797BAF16A74C40002E5173 /* XMPPReconnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPReconnect.h; sourceTree = "<group>"; };
 		08797BB016A74C40002E5173 /* XMPPReconnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPReconnect.m; sourceTree = "<group>"; };
 		08797BB316A7510D002E5173 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -223,7 +226,6 @@
 		49EB2B3815430EF400BE61F1 /* socialiPhoneApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "socialiPhoneApp-Prefix.pch"; sourceTree = "<group>"; };
 		49EB2B3915430EF400BE61F1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		49EB2B3A15430EF400BE61F1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		49EB2B3D15430EF400BE61F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		49EB2B3F15430EF400BE61F1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		49EB2B4015430EF400BE61F1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -694,6 +696,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
+				de,
 			);
 			mainGroup = 49EB2B1B15430EF400BE61F1;
 			productRefGroup = 49EB2B2715430EF400BE61F1 /* Products */;
@@ -793,6 +797,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				49EB2B3415430EF400BE61F1 /* en */,
+				0874C61C16BD81CB00674889 /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -800,7 +805,8 @@
 		49EB2B3C15430EF400BE61F1 /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				49EB2B3D15430EF400BE61F1 /* en */,
+				0874C61916BD809E00674889 /* Base */,
+				0874C61B16BD81CB00674889 /* de */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
