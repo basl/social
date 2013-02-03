@@ -68,6 +68,7 @@
 		086B2F1616A608CE003EDEE7 /* RFImageToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 086B2EFD16A608CE003EDEE7 /* RFImageToDataTransformer.m */; };
 		086B2F1716A608CE003EDEE7 /* XMPPIDTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 086B2EFF16A608CE003EDEE7 /* XMPPIDTracker.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		086B2F1816A608CE003EDEE7 /* XMPPSRVResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 086B2F0116A608CE003EDEE7 /* XMPPSRVResolver.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		0874C61F16BD87B400674889 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0874C61D16BD87B400674889 /* Localizable.strings */; };
 		08797BB116A74C40002E5173 /* XMPPReconnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 08797BB016A74C40002E5173 /* XMPPReconnect.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		08797BB416A7510D002E5173 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08797BB316A7510D002E5173 /* SystemConfiguration.framework */; };
 		08E6E09916B826D800D52FF4 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 08E6E09816B826D800D52FF4 /* Settings.bundle */; };
@@ -212,6 +213,8 @@
 		0874C61916BD809E00674889 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		0874C61B16BD81CB00674889 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
 		0874C61C16BD81CB00674889 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0874C61E16BD87B400674889 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0874C62016BD89EF00674889 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		08797BAF16A74C40002E5173 /* XMPPReconnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPReconnect.h; sourceTree = "<group>"; };
 		08797BB016A74C40002E5173 /* XMPPReconnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPReconnect.m; sourceTree = "<group>"; };
 		08797BB316A7510D002E5173 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -651,6 +654,7 @@
 				08177C4016B6F93E00D1173E /* KeychainItemWrapper.h */,
 				08177C4116B6F93E00D1173E /* KeychainItemWrapper.m */,
 				49EB2B3215430EF400BE61F1 /* socialiPhoneApp-Info.plist */,
+				0874C61D16BD87B400674889 /* Localizable.strings */,
 				49EB2B3315430EF400BE61F1 /* InfoPlist.strings */,
 				49EB2B3615430EF400BE61F1 /* main.m */,
 				49EB2B3815430EF400BE61F1 /* socialiPhoneApp-Prefix.pch */,
@@ -721,6 +725,7 @@
 				086B2E8716A604FA003EDEE7 /* Default@2x.png in Resources */,
 				086B2EAA16A6073D003EDEE7 /* README.txt in Resources */,
 				08E6E09916B826D800D52FF4 /* Settings.bundle in Resources */,
+				0874C61F16BD87B400674889 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +798,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0874C61D16BD87B400674889 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0874C61E16BD87B400674889 /* de */,
+				0874C62016BD89EF00674889 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		49EB2B3315430EF400BE61F1 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

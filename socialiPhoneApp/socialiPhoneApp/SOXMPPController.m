@@ -362,15 +362,20 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	NSString *displayName = [user displayName];
 	NSString *jidStrBare = [presence fromStr];
 	NSString *body = nil;
-	
-	if (![displayName isEqualToString:jidStrBare])
+	NSString *bodyPre = NSLocalizedString(@"Buddy request from", @"Alertbody");
+    
+	if (![displayName isEqualToString:jidStrBare] && displayName != nil)
 	{
-		body = [NSString stringWithFormat:@"Buddy request from %@ <%@>", displayName, jidStrBare];
+		body = [NSString stringWithFormat:@"%@ %@ <%@>", bodyPre, displayName, jidStrBare];
 	}
-	else
+	else if (displayName != nil)
 	{
-		body = [NSString stringWithFormat:@"Buddy request from %@", displayName];
+		body = [NSString stringWithFormat:@"%@ %@", bodyPre, displayName];
 	}
+    else
+    {
+        body = [NSString stringWithFormat:@"%@ %@", bodyPre, jidStrBare];
+    }
 	
 	
 	if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)

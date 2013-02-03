@@ -108,9 +108,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		int section = [sectionInfo.name intValue];
 		switch (section)
 		{
-			case 0  : return @"Available";
-			case 1  : return @"Away";
-			default : return @"Offline";
+			case 0  : return NSLocalizedString(@"Available", @"Section header: Available");
+			case 1  : return NSLocalizedString(@"Away", @"Section header: Away");
+			default : return NSLocalizedString(@"Offline", @"Section header: Offline");
 		}
 	}
 	

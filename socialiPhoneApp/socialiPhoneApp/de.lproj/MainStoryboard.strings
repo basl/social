@@ -3,7 +3,7 @@
 "3hK-ns-8d2.placeholder" = "nutzer@beispiel.de";
 
 /* Class = "IBUILabel"; text = "Autologin"; ObjectID = "VXE-73-tuV"; */
-"VXE-73-tuV.text" = "Autologin";
+"VXE-73-tuV.text" = "Automatisch Anmelden";
 
 /* Class = "IBUILabel"; text = "Jabber-ID"; ObjectID = "WjC-hQ-DWj"; */
 "WjC-hQ-DWj.text" = "Jabber-ID";
