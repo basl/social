@@ -362,7 +362,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	NSString *displayName = [user displayName];
 	NSString *jidStrBare = [presence fromStr];
 	NSString *body = nil;
-	NSString *bodyPre = NSLocalizedString(@"Buddy request from", @"Alertbody");
+	NSString *bodyPre = NSLocalizedString(@"Buddy request from", @"Alertview body for adding a buddy");
     
 	if (![displayName isEqualToString:jidStrBare] && displayName != nil)
 	{

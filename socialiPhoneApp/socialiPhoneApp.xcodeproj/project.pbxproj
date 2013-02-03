@@ -124,6 +124,7 @@
 		0831083616B54CB300FDC40A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		083B243A16B5701500BF9F9C /* SORosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SORosterViewController.h; sourceTree = "<group>"; };
 		083B243B16B5701500BF9F9C /* SORosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SORosterViewController.m; sourceTree = "<group>"; };
+		085EEFEF16BE84AE0049D90E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
 		086B2E8216A604FA003EDEE7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		086B2E8316A604FA003EDEE7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		086B2E8416A604FA003EDEE7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -821,6 +822,7 @@
 			children = (
 				0874C61916BD809E00674889 /* Base */,
 				0874C61B16BD81CB00674889 /* de */,
+				085EEFEF16BE84AE0049D90E /* en */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
