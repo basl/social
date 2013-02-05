@@ -1,5 +1,5 @@
 //
-//  SOXMPPController.h
+//  CLXMPPController.h
 //  socialiPhoneApp
 //
 //  Created by David Donszik on 21.01.13.
@@ -7,18 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "XMPPRoster.h"
 
-@interface SOXMPPController : NSObject <XMPPRosterDelegate>
+@class CLRosterController;
+
+@interface CLXMPPController : NSObject
 
 @property (nonatomic, strong) NSString *jabberID;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *host;
+@property (nonatomic, strong, readonly) CLRosterController *rosterController;
 
 /**
  * Singleton Method
  */
-+ (SOXMPPController *)sharedInstance;
++ (CLXMPPController *)sharedInstance;
 
 /**
  * This method tries to connect to the XMPPStream if needed.
@@ -26,10 +28,5 @@
  * @return TRUE, if the stream was or gets connected, FALSE otherwise.
  */
 - (BOOL)connect;
-
-/**
- * Returns the Managed Object Context which is used by the roster module.
- */
-- (NSManagedObjectContext *)managedObjectContext_roster;
 
 @end

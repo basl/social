@@ -1,5 +1,5 @@
 //
-//  SORosterViewController.h
+//  ILRosterViewController.h
 //  socialiPhoneApp
 //
 //  Created by David Donszik on 27.01.13.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface SORosterViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
+@interface ILRosterViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

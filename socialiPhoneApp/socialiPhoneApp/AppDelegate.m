@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "SOXMPPController.h"
+#import "CLXMPPController.h"
 
 #import "SOLogging.h"
 #import "DDTTYLogger.h"

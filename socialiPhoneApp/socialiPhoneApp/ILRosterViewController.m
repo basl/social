@@ -1,15 +1,16 @@
 //
-//  SORosterViewController.m
+//  ILRosterViewController.h
 //  socialiPhoneApp
 //
 //  Created by David Donszik on 27.01.13.
 //  Copyright (c) 2013 greenbytes GmbH. All rights reserved.
 //
 
-#import "SORosterViewController.h"
-#import "SOXMPPController.h"
-#import "SOLogging.h"
+#import "ILRosterViewController.h"
+#import "CLXMPPController.h"
 #import "XMPPFramework.h"
+#import "CLRosterController.h"
+#import "SOLogging.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -18,11 +19,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 static const int ddLogLevel = LOG_LEVEL_INFO;
 #endif
 
-@interface SORosterViewController ()
+@interface ILRosterViewController ()
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @end
 
-@implementation SORosterViewController
+@implementation ILRosterViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,7 +53,19 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
 	if (_fetchedResultsController == nil)
 	{
-		NSManagedObjectContext *moc = [[SOXMPPController sharedInstance] managedObjectContext_roster];
+        CLRosterController *rosterController = [CLXMPPController sharedInstance].rosterController;
+        if (rosterController == nil)
+        {
+            DDLogError(@"RosterController must not be null.");
+            return nil;
+        }
+        
+		NSManagedObjectContext *moc = [rosterController managedObjectContext];
+        if (moc == nil)
+        {
+            DDLogError(@"Managed Object Context of RosterController must not be null.");
+            return nil;
+        }
 		
 		NSEntityDescription *entity = [NSEntityDescription entityForName:@"XMPPUserCoreDataStorageObject"
 		                                          inManagedObjectContext:moc];

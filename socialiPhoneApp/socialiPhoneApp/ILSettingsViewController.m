@@ -1,14 +1,14 @@
 //
-//  ViewController.m
+//  ILSettingsViewController.m
 //  socialiPhoneApp
 //
 //  Created by Bastian Lengert on 21.04.12.
 //  Copyright (c) 2012 greenbytes GmbH. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "SOXMPPController.h"
-#import "SORosterViewController.h"
+#import "ILSettingsViewController.h"
+#import "CLXMPPController.h"
+#import "ILRosterViewController.h"
 #import "KeychainItemWrapper.h"
 #import "PreferencesController.h"
 #import "SOLogging.h"
@@ -24,11 +24,11 @@ static NSString *AUTOLOGIN      = @"auto_login";
 static NSString *HOSTNAME       = @"host_name";
 static NSString *CREDENTIALS    = @"credentials";
 
-@interface ViewController ()
+@interface ILSettingsViewController ()
 
 @end
 
-@implementation ViewController
+@implementation ILSettingsViewController
 
 - (void)viewDidLoad
 {
@@ -63,14 +63,14 @@ static NSString *CREDENTIALS    = @"credentials";
 
 - (void)login
 {
-    SOXMPPController *xmppController = [SOXMPPController sharedInstance];
+    CLXMPPController *xmppController = [CLXMPPController sharedInstance];
     //TODO: check for correct jid and valid host
     [xmppController setHost:self.hostTextfield.text];
     [xmppController setJabberID:self.jIDTextfield.text];
     [xmppController setPassword:self.pwdTextfield.text];
     if ([xmppController connect])
     {
-        SORosterViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"SORosterViewController"];
+        ILRosterViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ILRosterViewController"];
 
         [self.navigationController pushViewController:controller animated:YES];
     }

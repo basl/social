@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ILSettingsViewController.h
 //  socialiPhoneApp
 //
 //  Created by Bastian Lengert on 21.04.12.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UITextFieldDelegate>
+@interface ILSettingsViewController : UIViewController <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *hostTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *jIDTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *pwdTextfield;
