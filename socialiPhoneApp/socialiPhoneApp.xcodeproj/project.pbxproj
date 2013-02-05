@@ -707,14 +707,14 @@
 		49EB2B3015430EF400BE61F1 /* socialiPhoneApp */ = {
 			isa = PBXGroup;
 			children = (
-				08D5520616C1B9AA00A62F6F /* Communication */,
-				08D5520916C1B9AA00A62F6F /* Helpers */,
 				08D5520E16C1B9AA00A62F6F /* Interface */,
-				08D5521216C1B9AA00A62F6F /* Internationalization */,
+				08D5520616C1B9AA00A62F6F /* Communication */,
 				08D5521C16C1B9AA00A62F6F /* Modules */,
+				08D5520916C1B9AA00A62F6F /* Helpers */,
 				08D5523A16C1B9AA00A62F6F /* Others */,
-				08D5524216C1B9AA00A62F6F /* Settings.bundle */,
+				08D5521216C1B9AA00A62F6F /* Internationalization */,
 				087D7F85163C0E5700A392DE /* Ressources */,
+				08D5524216C1B9AA00A62F6F /* Settings.bundle */,
 			);
 			path = socialiPhoneApp;
 			sourceTree = "<group>";
