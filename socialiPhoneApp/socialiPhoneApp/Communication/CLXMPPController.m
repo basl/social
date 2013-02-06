@@ -21,6 +21,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 @interface CLXMPPController ()
 @property (nonatomic, strong, readonly) XMPPStream *xmppStream;
 @property (nonatomic, strong, readonly) XMPPReconnect *xmppReconnect;
+@property (nonatomic, strong, readonly) PLEventModule *eventModule;
 
 @property BOOL allowSelfSignedCertificates;
 @property BOOL allowSSLHostNameMismatch;
@@ -96,6 +97,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     // Setup roster
     _rosterController = [[CLRosterController alloc] initWithStream:self.xmppStream];
     
+    // Setup EventModule
+    MLEventCoreDataStorage *eventStorage = [[MLEventCoreDataStorage alloc] initWithDatabaseFilename:nil];
+    _eventModule = [[PLEventModule alloc] initWithEventStorage:eventStorage dispatchQueue:dispatch_get_main_queue()];
+    
 	// Setup vCard support
 	//
 	// The vCard Avatar module works in conjuction with the standard vCard Temp module to download user avatars.
@@ -138,6 +143,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	// Activate xmpp modules
     
 	[self.xmppReconnect     activate:self.xmppStream];
+    [self.eventModule       activate:self.xmppStream];
      /*[xmppvCardTempModule   activate:xmppStream];
      [xmppvCardAvatarModule activate:xmppStream];
      [xmppCapabilities      activate:xmppStream];*/
@@ -145,6 +151,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	// Add ourself as a delegate to anything we may be interested in
     
 	[self.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    [self.xmppStream addDelegate:self.eventModule delegateQueue:dispatch_get_main_queue()];
     
 	// Optional:
 	//
@@ -172,11 +179,13 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     [self.rosterController teardownStream];
 	[self.xmppReconnect         deactivate];
+    [self.eventModule           deactivate];
     
 	[self.xmppStream disconnect];
 	
 	_xmppStream = nil;
 	_xmppReconnect = nil;
+    _eventModule = nil;
 }
 
 
@@ -187,6 +196,24 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	[self.xmppStream sendElement:presence];
     
     DDLogVerbose(@"Going online");
+}
+
+//TODO: remove - testing
+- (void)sendEvent
+{
+    XMPPMessage *msg = [[XMPPMessage alloc] init];
+    [msg addAttributeWithName:@"to" stringValue:@"YOUR JID HERE"];
+    NSXMLElement *event = [[NSXMLElement alloc] initWithName:@"event"];
+    [event setURI:@"urn:social:event"];
+    [event addAttributeWithName:@"eventId" stringValue:@"1"];
+    
+    NSXMLElement *event2 = [[NSXMLElement alloc] initWithName:@"event"];
+    [event2 setURI:@"urn:social:event"];
+    [event2 addAttributeWithName:@"eventId" stringValue:@"2"];
+    
+    [msg addChild:event];
+    [msg addChild:event2];
+    [self.xmppStream sendElement:msg];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

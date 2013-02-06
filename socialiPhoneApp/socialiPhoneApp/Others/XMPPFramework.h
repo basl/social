@@ -31,3 +31,7 @@
 #import "XMPPRoster.h"
 #import "XMPPRosterMemoryStorage.h"
 #import "XMPPRosterCoreDataStorage.h"
+
+
+// Own Modules
+#import "PLEventModule.h" // base module

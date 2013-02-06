@@ -29,4 +29,7 @@
  */
 - (BOOL)connect;
 
+
+- (void)sendEvent; //TODO: remove - testing
+
 @end

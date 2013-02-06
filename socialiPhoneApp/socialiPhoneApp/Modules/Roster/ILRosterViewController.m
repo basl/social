@@ -162,7 +162,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #pragma mark - UITableView Delegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    //TODO: remove - this is just a test
+    [[CLXMPPController sharedInstance] sendEvent];
 }
 
 
