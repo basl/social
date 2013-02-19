@@ -942,6 +942,7 @@
 		49EB2B4515430EF400BE61F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "socialiPhoneApp/Others/socialiPhoneApp-Prefix.pch";
 				INFOPLIST_FILE = "socialiPhoneApp/Others/socialiPhoneApp-Info.plist";
@@ -951,6 +952,7 @@
 					"\"$(SRCROOT)/socialiPhoneApp/Ressources/Libraries/libidn\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -959,6 +961,7 @@
 		49EB2B4615430EF400BE61F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "socialiPhoneApp/Others/socialiPhoneApp-Prefix.pch";
 				INFOPLIST_FILE = "socialiPhoneApp/Others/socialiPhoneApp-Info.plist";
@@ -968,6 +971,7 @@
 					"\"$(SRCROOT)/socialiPhoneApp/Ressources/Libraries/libidn\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
