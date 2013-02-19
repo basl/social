@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		49D604C616D4281D0006BB95 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 49D604C916D4281D0006BB95 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				49D604CA16D428270006BB95 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		0831082916B547A600FDC40A /* XMPPCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0831082716B547A600FDC40A /* XMPPCoreDataStorage.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		0831082D16B5483900FDC40A /* XMPPElement+Delay.m in Sources */ = {isa = PBXBuildFile; fileRef = 0831082C16B5483900FDC40A /* XMPPElement+Delay.m */; };
@@ -763,6 +777,7 @@
 			projectRoot = "";
 			targets = (
 				49EB2B2515430EF400BE61F1 /* socialiPhoneApp */,
+				49D604C616D4281D0006BB95 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -783,6 +798,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		49D604CA16D428270006BB95 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc --project-name \"${PROJECT_NAME}\" --project-company \"Social Source\" --company-id \"com.socialsource\" --output \"${PROJECT_NAME}/Documentation\" --logformat xcode \"${PROJECT_DIR}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		49EB2B2215430EF400BE61F1 /* Sources */ = {
@@ -882,6 +913,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		49D604C716D4281D0006BB95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		49D604C816D4281D0006BB95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		49EB2B4215430EF400BE61F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -980,6 +1025,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		49D604C916D4281D0006BB95 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49D604C716D4281D0006BB95 /* Debug */,
+				49D604C816D4281D0006BB95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		49EB2B2015430EF400BE61F1 /* Build configuration list for PBXProject "socialiPhoneApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
