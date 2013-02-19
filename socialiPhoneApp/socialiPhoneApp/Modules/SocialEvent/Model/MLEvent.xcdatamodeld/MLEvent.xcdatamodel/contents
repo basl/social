@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="MLCommentCoreDataStorageObject" representedClassName="MLCommentCoreDataStorageObject" parentEntity="MLModuleDataCoreDataStorageObject" syncable="YES">
+        <attribute name="body" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="MLEventCoreDataStorageObject" representedClassName="MLEventCoreDataStorageObject" syncable="YES">
+        <attribute name="eventId" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="stamp" attributeType="Date" syncable="YES"/>
+        <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MLEventCoreDataStorageObject" inverseName="parent" inverseEntity="MLEventCoreDataStorageObject" syncable="YES"/>
+        <relationship name="from" minCount="1" maxCount="1" deletionRule="Deny" destinationEntity="MLUserCoreDataStorageObject" inverseName="sendsEvent" inverseEntity="MLUserCoreDataStorageObject" syncable="YES"/>
+        <relationship name="moduleData" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MLModuleDataCoreDataStorageObject" inverseName="event" inverseEntity="MLModuleDataCoreDataStorageObject" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="MLEventCoreDataStorageObject" inverseName="children" inverseEntity="MLEventCoreDataStorageObject" syncable="YES"/>
+        <relationship name="receiver" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="MLUserCoreDataStorageObject" inverseName="receivesEvent" inverseEntity="MLUserCoreDataStorageObject" syncable="YES"/>
+    </entity>
+    <entity name="MLImageCoreDataStorageObject" representedClassName="MLImageCoreDataStorageObject" parentEntity="MLModuleDataCoreDataStorageObject" syncable="YES">
+        <attribute name="imageData" attributeType="Transformable" syncable="YES"/>
+    </entity>
+    <entity name="MLModuleDataCoreDataStorageObject" representedClassName="MLModuleDataCoreDataStorageObject" isAbstract="YES" syncable="YES">
+        <attribute name="moduleName" attributeType="String" syncable="YES"/>
+        <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MLEventCoreDataStorageObject" inverseName="moduleData" inverseEntity="MLEventCoreDataStorageObject" syncable="YES"/>
+    </entity>
+    <entity name="MLUserCoreDataStorageObject" representedClassName="MLUserCoreDataStorageObject" syncable="YES">
+        <attribute name="jid" attributeType="String" syncable="YES"/>
+        <relationship name="receivesEvent" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MLEventCoreDataStorageObject" inverseName="receiver" inverseEntity="MLEventCoreDataStorageObject" syncable="YES"/>
+        <relationship name="sendsEvent" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MLEventCoreDataStorageObject" inverseName="from" inverseEntity="MLEventCoreDataStorageObject" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="MLCommentCoreDataStorageObject" positionX="-353" positionY="149" width="128" height="58"/>
+        <element name="MLEventCoreDataStorageObject" positionX="-603" positionY="-72" width="128" height="148"/>
+        <element name="MLImageCoreDataStorageObject" positionX="-200" positionY="149" width="128" height="58"/>
+        <element name="MLModuleDataCoreDataStorageObject" positionX="-344" positionY="26" width="128" height="73"/>
+        <element name="MLUserCoreDataStorageObject" positionX="-801" positionY="-25" width="128" height="88"/>
+    </elements>
+</model>

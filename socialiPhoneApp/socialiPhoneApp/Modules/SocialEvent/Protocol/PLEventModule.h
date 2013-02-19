@@ -3,7 +3,7 @@
 //  socialiPhoneApp
 //
 //  Created by David Donszik on 06.02.13.
-//  Copyright (c) 2013 greenbytes GmbH. All rights reserved.
+//  Copyright (c) 2013 David Donszik. All rights reserved.
 //
 
 #import "XMPPModule.h"
@@ -15,4 +15,6 @@
 
 // make init unavailable (throw compiler error)
 - (id) init __attribute__((unavailable("Must use initWithEventStorage:dispatchQueue: instead.")));
+
+- (NSManagedObjectContext *)managedObjectContext;
 @end

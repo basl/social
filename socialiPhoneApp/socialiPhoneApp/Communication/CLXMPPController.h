@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class PLEventModule;
 @class CLRosterController;
+@class PLEvent;
 
 @interface CLXMPPController : NSObject
 
@@ -16,6 +18,7 @@
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *host;
 @property (nonatomic, strong, readonly) CLRosterController *rosterController;
+@property (nonatomic, strong, readonly) PLEventModule *eventModule;
 
 /**
  * Singleton Method
@@ -29,7 +32,8 @@
  */
 - (BOOL)connect;
 
+- (void)sendEvent:(PLEvent *)event toUser:(NSArray *)jids;
 
-- (void)sendEvent; //TODO: remove - testing
+- (void)sendEventToUser:(NSString *)jid; //TODO: remove - testing
 
 @end

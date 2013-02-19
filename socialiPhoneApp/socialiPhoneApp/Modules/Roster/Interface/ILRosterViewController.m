@@ -3,7 +3,7 @@
 //  socialiPhoneApp
 //
 //  Created by David Donszik on 27.01.13.
-//  Copyright (c) 2013 greenbytes GmbH. All rights reserved.
+//  Copyright (c) 2013 David Donszik. All rights reserved.
 //
 
 #import "ILRosterViewController.h"
@@ -163,7 +163,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //TODO: remove - this is just a test
-    [[CLXMPPController sharedInstance] sendEvent];
+    
+	XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    [[CLXMPPController sharedInstance] sendEventToUser:[user.jid bare]];
 }
 
 

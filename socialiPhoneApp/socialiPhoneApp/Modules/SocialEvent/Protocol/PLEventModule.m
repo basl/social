@@ -3,13 +3,14 @@
 //  socialiPhoneApp
 //
 //  Created by David Donszik on 06.02.13.
-//  Copyright (c) 2013 greenbytes GmbH. All rights reserved.
+//  Copyright (c) 2013 David Donszik. All rights reserved.
 //
 
 #import "PLEventModule.h"
 #import "XMPPFramework.h"
-#import "SOLogging.h"
 #import "MLEventCoreDataStorageObject.h"
+#import "XMPPMessage+MLEvent.h"
+#import "SOLogging.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -38,18 +39,28 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
 {
 	// This method is invoked on the moduleQueue.
-	DDLogVerbose(@"%@: %@ - %@", THIS_FILE, THIS_METHOD, [message fromStr]);
+	if (![message hasValidEvents]) {
+        return;
+    }
     
     // Save events
-    NSArray *events = [MLEventCoreDataStorageObject insertEventsInMessage:message managedObjectContext:[self.storage mainThreadManagedObjectContext] forTimeStamp:@"2002-09-10T23:41:07Z"];
+    //TODO: let factories create and store specific events - move this to CL
+    NSArray *events = [MLEventCoreDataStorage insertEventsInMessage:message managedObjectContext:[self.storage mainThreadManagedObjectContext] forTimeStamp:[NSDate date]];
     
-    DDLogVerbose(@"Persisted Events: %@", events);
+    DDLogVerbose(@"Persisted Events: %d", [events count]);
     NSError *err;
     [[self.storage mainThreadManagedObjectContext] save:&err];
     if (err)
     {
         DDLogError(@"Error saving Events: %@", [err userInfo]);
     }
+}
+
+#pragma mark - Core Data
+
+- (NSManagedObjectContext *)managedObjectContext
+{
+	return [self.storage mainThreadManagedObjectContext];
 }
 
 @end

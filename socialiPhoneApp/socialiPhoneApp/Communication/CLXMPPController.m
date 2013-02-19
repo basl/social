@@ -10,6 +10,7 @@
 #import "XMPPFramework.h"
 #import "CLRosterController.h"
 #import "SOLogging.h"
+#import "PLEvent.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -21,7 +22,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 @interface CLXMPPController ()
 @property (nonatomic, strong, readonly) XMPPStream *xmppStream;
 @property (nonatomic, strong, readonly) XMPPReconnect *xmppReconnect;
-@property (nonatomic, strong, readonly) PLEventModule *eventModule;
 
 @property BOOL allowSelfSignedCertificates;
 @property BOOL allowSSLHostNameMismatch;
@@ -151,7 +151,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	// Add ourself as a delegate to anything we may be interested in
     
 	[self.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
-    [self.xmppStream addDelegate:self.eventModule delegateQueue:dispatch_get_main_queue()];
     
 	// Optional:
 	//
@@ -198,22 +197,70 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     DDLogVerbose(@"Going online");
 }
 
-//TODO: remove - testing
-- (void)sendEvent
+- (void)sendEvent:(PLEvent *)event toUser:(NSArray *)jids
 {
+    //---
+    //TODO: handle adding own user of created events otherwise
+    // adding self as recipient to get the event
+    XMPPJID *ownJID = self.xmppStream.myJID;
+    NSMutableArray *mutJIDs = [NSMutableArray arrayWithArray:jids];
+    BOOL selfIncluded = NO;
+    
+    for (XMPPJID *jid in jids) {
+        
+        if ([[ownJID bare] isEqualToString:[jid bare]]) {
+            selfIncluded = YES;
+            break;
+        }
+    }
+    if (!selfIncluded) {
+        [mutJIDs addObject:ownJID];
+    }
+    //---
+    
+    event.from = self.xmppStream.myJID;
+    for (XMPPJID *jid in mutJIDs) {
+        
+        XMPPMessage *msg = [[XMPPMessage alloc] init];
+        [msg addAttributeWithName:@"to" stringValue:[jid bare]];
+        
+        [msg addChild:[event copy]];
+        
+        [self.xmppStream sendElement:msg];
+    }
+}
+
+//TODO: remove - testing
+- (void)sendEventToUser:(NSString *)jid
+{
+    
     XMPPMessage *msg = [[XMPPMessage alloc] init];
-    [msg addAttributeWithName:@"to" stringValue:@"YOUR JID HERE"];
-    NSXMLElement *event = [[NSXMLElement alloc] initWithName:@"event"];
-    [event setURI:@"urn:social:event"];
-    [event addAttributeWithName:@"eventId" stringValue:@"1"];
+    [msg addAttributeWithName:@"to" stringValue:jid];
     
-    NSXMLElement *event2 = [[NSXMLElement alloc] initWithName:@"event"];
-    [event2 setURI:@"urn:social:event"];
-    [event2 addAttributeWithName:@"eventId" stringValue:@"2"];
+    // Event 1
+    PLEvent *event1 = [PLEvent eventWithParent:nil
+                                          from:[self.xmppStream myJID]
+                                            to:@[[XMPPJID jidWithString:jid]]];
     
-    [msg addChild:event];
-    [msg addChild:event2];
+    
+    NSXMLElement *body = [[NSXMLElement alloc] initWithName:@"body"];
+    [body setStringValue:@"Erstens!"];
+    
+    NSXMLElement *comment = [[NSXMLElement alloc] initWithName:@"comment"];
+    [comment addChild:body];
+    [event1 setData:comment];
+    
+    
+    [msg addChild:event1];
     [self.xmppStream sendElement:msg];
+    
+    // send again to self
+    //TODO: remove this test
+    
+    XMPPMessage *msg2 = [[XMPPMessage alloc] init];
+    [msg2 addAttributeWithName:@"to" stringValue:[[self.xmppStream myJID] bare]];
+    [msg2 addChild:[event1 copy]];
+    [self.xmppStream sendElement:msg2];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -245,7 +292,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		DDLogError(@"Error connecting: %@", error);
 		return NO;
 	}
-    DDLogVerbose(@"Connected");
 	return YES;
 }
 

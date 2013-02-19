@@ -3,10 +3,11 @@
 //  socialiPhoneApp
 //
 //  Created by David Donszik on 06.02.13.
-//  Copyright (c) 2013 greenbytes GmbH. All rights reserved.
+//  Copyright (c) 2013 David Donszik. All rights reserved.
 //
 
 #import "XMPPMessage+MLEvent.h"
+#import "PLEvent.h"
 
 @implementation XMPPMessage (MLEvent)
 
@@ -48,9 +49,11 @@
     return validEvents;
 }
 
+//TODO: move this to PLEvent
+//TODO: validate msg.from = event.from - for now...
 - (BOOL)isValidEvent:(NSXMLElement *)event
 {
-    return [event attributeForName:@"eventId"] != nil;
+    return [event attributeForName:@"eventid"] != nil;
 }
 
 @end
