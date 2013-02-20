@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		49D604C616D4281D0006BB95 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 49D604C916D4281D0006BB95 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				49D604CA16D428270006BB95 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		08110B7616D3A7B3003676D2 /* ILCommentComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B9C4616D38D93000BA05E /* ILCommentComposeViewController.m */; };
 		08110B7716D3A7B3003676D2 /* ILCommentBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B9C4416D38D93000BA05E /* ILCommentBodyCell.m */; };
@@ -918,6 +932,7 @@
 			projectRoot = "";
 			targets = (
 				49EB2B2515430EF400BE61F1 /* socialiPhoneApp */,
+				49D604C616D4281D0006BB95 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -938,6 +953,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		49D604CA16D428270006BB95 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc --project-name \"${PROJECT_NAME}\" --project-company \"Social Source\" --company-id \"com.socialsource\" --output \"${PROJECT_NAME}/Documentation\" --logformat xcode \"${PROJECT_DIR}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		49EB2B2215430EF400BE61F1 /* Sources */ = {
@@ -1054,6 +1085,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		49D604C716D4281D0006BB95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		49D604C816D4281D0006BB95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		49EB2B4215430EF400BE61F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1114,6 +1159,7 @@
 		49EB2B4515430EF400BE61F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "socialiPhoneApp/Others/socialiPhoneApp-Prefix.pch";
 				INFOPLIST_FILE = "socialiPhoneApp/Others/socialiPhoneApp-Info.plist";
@@ -1123,6 +1169,7 @@
 					"\"$(SRCROOT)/socialiPhoneApp/Ressources/Libraries/libidn\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1131,6 +1178,7 @@
 		49EB2B4615430EF400BE61F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "socialiPhoneApp/Others/socialiPhoneApp-Prefix.pch";
 				INFOPLIST_FILE = "socialiPhoneApp/Others/socialiPhoneApp-Info.plist";
@@ -1140,6 +1188,7 @@
 					"\"$(SRCROOT)/socialiPhoneApp/Ressources/Libraries/libidn\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1148,6 +1197,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		49D604C916D4281D0006BB95 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49D604C716D4281D0006BB95 /* Debug */,
+				49D604C816D4281D0006BB95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		49EB2B2015430EF400BE61F1 /* Build configuration list for PBXProject "socialiPhoneApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
