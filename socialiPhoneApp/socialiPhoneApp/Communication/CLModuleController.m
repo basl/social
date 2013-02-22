@@ -103,7 +103,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self.xmppStream sendElement:msg];
     
     // send again to self
-    //TODO: remove this test
     
     XMPPMessage *msg2 = [[XMPPMessage alloc] init];
     [msg2 addAttributeWithName:@"to" stringValue:[[self.xmppStream myJID] bare]];

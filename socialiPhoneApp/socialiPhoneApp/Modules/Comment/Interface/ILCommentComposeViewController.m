@@ -7,10 +7,8 @@
 //
 
 #import "ILCommentComposeViewController.h"
-#import "XMPPMessage+MLEvent.h"
-#import "PLEvent.h"
-#import "PLComment.h"
-#import "CLModuleController.h"
+#import "XMPPJID.h"
+#import "PLCommentModule.h"
 #import "MLEventCoreDataStorageObject.h"
 #import "MLUserCoreDataStorageObject.h"
 #import "ILCommentBodyCell.h"
@@ -137,10 +135,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 }
 
 - (IBAction)clickDone:(UIBarButtonItem *)sender {
-    //TODO: move this to PLCommentModule (when it's created...)
     // send comment
     if (!self.recipients || [self.recipients count] < 1) {
         DDLogWarn(@"Can't send Comment without recipients");
+        //TODO: handle user feedback
+        //???: Should we send the comment just to ourself, if no user is selected?
         return;
     }
     
@@ -150,14 +149,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         parentId = self.parent.eventId;
     }
     
-    // attribute "from" should be added later
-    PLEvent *event = [PLEvent eventWithParent:parentId
-                                          from:nil
-                                            to:self.recipients];
-    
-    PLComment *comment = [PLComment commentWithEvent:event body:self.bodyText.text];
-    
-    [[CLModuleController sharedInstance] sendEvent:comment toUser:self.recipients];
+    [PLCommentModule sendComment:self.bodyText.text forParent:parentId to:self.recipients];
     
     if (self.delegate) {
         [self.delegate done];

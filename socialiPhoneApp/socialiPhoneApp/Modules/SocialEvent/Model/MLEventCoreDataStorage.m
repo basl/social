@@ -9,12 +9,11 @@
 #import "MLEventCoreDataStorage.h"
 #import "XMPPFramework.h"
 #import "MLEventCoreDataStorageObject.h"
-#import "MLCommentCoreDataStorageObject.h"
-#import "MLImageCoreDataStorageObject.h"
 #import "MLUserCoreDataStorageObject.h"
 #import "XMPPMessage+MLEvent.h"
 #import "PLEvent.h"
-#import "PLComment.h"
+#import "NSString+FirstCapitalized.h"
+#import "MLModuleDataProtocol.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -28,9 +27,12 @@ static NSString *const IMAGE = @"image";
 static NSString *const COMMENT = @"comment";
 
 
-@implementation MLEventCoreDataStorage
+@implementation MLEventCoreDataStorage {}
 
-//TODO: let factories create and store specific events - move this to CL
+/////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PUBLIC METHODS
+/////////////////////////////////////////////////////////////////////////////////////////
+
 + (void)insertEventsInMessage:(XMPPMessage *)message
               managedObjectContext:(NSManagedObjectContext *)moc
                       forTimeStamp:(NSDate *)stamp
@@ -53,14 +55,7 @@ static NSString *const COMMENT = @"comment";
         return;
     }
     
-	NSString *eventClassName    = NSStringFromClass([MLEventCoreDataStorageObject class]);
-	NSString *commentClassName  = NSStringFromClass([MLCommentCoreDataStorageObject class]);
-    NSString *imageClassName    = NSStringFromClass([MLImageCoreDataStorageObject class]);
     
-    MLEventCoreDataStorageObject *newEvent;
-    MLModuleDataCoreDataStorageObject *moduleData;
-    MLCommentCoreDataStorageObject *commentModuleData;
-    MLImageCoreDataStorageObject *imageModuleData;
     
     
     NSArray *events = [message getValidEvents];
@@ -106,10 +101,44 @@ static NSString *const COMMENT = @"comment";
             [recipients addObject:toUser];
         }
         
+        // Check for the correct Module to create the ModuleDataObject
+        NSString * moduleName = event.type;
+        if (!moduleName) {
+            DDLogWarn(@"Could not determine type of event.");
+            break;
+        }
+        // The Factories to create the MLModuleDataCoreDataStorageObject follow these naming conventions:
+        // ML<Type>CoreDataStorageObject e.g.: MLCommentCoreDataStorageObject
+        // The Type MUST have a capital letter and the rest MUST be lowercase.
+        
+        moduleName = [moduleName firstCapRestLow];
+        if (!moduleName)
+        {
+            DDLogWarn(@"Module type could not be extracted from event.");
+            break;
+        }
+        moduleName = [NSString stringWithFormat:@"ML%@CoreDataStorageObject", moduleName];
+        
+        DDLogVerbose(@"Trying to load moduledata from %@.", moduleName);
+        
+        Class moduleDataStorage = NSClassFromString(moduleName);
+        
+        MLModuleDataCoreDataStorageObject *moduleData;
+        if ([moduleDataStorage conformsToProtocol:@protocol(MLModuleDataProtocol)])
+        {
+            Class<MLModuleDataProtocol> moduleClass = moduleDataStorage;
+            moduleData = [moduleClass createModuleDataForEvent:event
+                                          managedObjectContext:moc];
+        }
+        if (!moduleData) {
+            DDLogWarn(@"Could not create moduledata.");
+            break;
+        }
         
         
-        newEvent = [NSEntityDescription insertNewObjectForEntityForName:eventClassName
-                                                 inManagedObjectContext:moc];
+        NSString *eventClassName    = NSStringFromClass([MLEventCoreDataStorageObject class]);
+        MLEventCoreDataStorageObject *newEvent = [NSEntityDescription insertNewObjectForEntityForName:eventClassName
+                                                                               inManagedObjectContext:moc];
         newEvent.eventId = eventId;
         newEvent.stamp = stamp;
         newEvent.parent = parent;
@@ -117,29 +146,15 @@ static NSString *const COMMENT = @"comment";
         [newEvent addReceiver:recipients];
         
         //TODO: the following is just a test! Implement Factory to create ModuleData from valid NSXMLElement
-        if ([PLComment isComment:event]) {
-            PLComment *comment = [PLComment commentFromEvent:event];
-            
-            commentModuleData = [NSEntityDescription insertNewObjectForEntityForName:commentClassName
-                                                              inManagedObjectContext:moc];
-            //TODO: read moduleName from element
-            commentModuleData.moduleName = COMMENT;
-            commentModuleData.body = comment.body;
-            moduleData = commentModuleData;
-        }
-        else if ([event elementForName:IMAGE] != nil)
-        {
-            //NSXMLElement *child = [event elementForName:IMAGE];
-            
-            imageModuleData = [NSEntityDescription insertNewObjectForEntityForName:imageClassName
-                                                            inManagedObjectContext:moc];
-            imageModuleData.moduleName = IMAGE;
-            imageModuleData.imageData = @"(*)(*)";
-            moduleData = imageModuleData;
-        }
+        
         newEvent.moduleData = moduleData;
     }
 }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PRIVATE METHODS
+/////////////////////////////////////////////////////////////////////////////////////////
 
 + (MLUserCoreDataStorageObject *)userForJID:(XMPPJID *)jid
                        managedObjectContext:(NSManagedObjectContext *)moc
@@ -215,6 +230,7 @@ static NSString *const COMMENT = @"comment";
 	
 	return (MLEventCoreDataStorageObject *)[results lastObject];
 }
+
 @end
 
 

@@ -170,7 +170,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     MLModuleDataCoreDataStorageObject *moduleData = event.moduleData;
     
     if ([moduleData isKindOfClass:[MLCommentCoreDataStorageObject class]]) {
-        DDLogVerbose(@"It's a comment!");
         cell.textLabel.text = ((MLCommentCoreDataStorageObject *)moduleData).body;
     }
     else

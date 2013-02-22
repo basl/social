@@ -430,6 +430,54 @@
             <point key="canvasLocation" x="2022" y="900"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ILAddRecipientsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ILAddRecipientsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="clickDone:" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="ILCommentBodyCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ILCommentBodyCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bodyText" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="ILCommentComposeViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ILCommentComposeViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="clickCancel:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="clickDone:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="bodyText" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="ILCommentEventCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ILCommentEventCell.h"/>
+        </class>
+        <class className="ILRecipientsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ILRecipientsViewController.h"/>
+        </class>
+        <class className="ILRosterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ILRosterViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="ILSettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ILSettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changeAutoLogin:" candidateClass="UISwitch"/>
+                <relationship kind="action" name="clickDone:"/>
+                <relationship kind="outlet" name="autoLoginSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="hostTextfield" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="jIDTextfield" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="pwdTextfield" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ILTimelineViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ILTimelineViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

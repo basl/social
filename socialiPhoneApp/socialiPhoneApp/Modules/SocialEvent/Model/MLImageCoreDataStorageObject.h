@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "MLModuleDataCoreDataStorageObject.h"
+#import "MLModuleDataProtocol.h"
 
 
-@interface MLImageCoreDataStorageObject : MLModuleDataCoreDataStorageObject
+@interface MLImageCoreDataStorageObject : MLModuleDataCoreDataStorageObject <MLModuleDataProtocol>
 
 @property (nonatomic, retain) id imageData;
 

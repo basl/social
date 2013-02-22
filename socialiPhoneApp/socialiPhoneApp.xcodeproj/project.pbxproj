@@ -41,6 +41,7 @@
 		083B9C6F16D39C79000BA05E /* MLUserCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B9C6816D39C79000BA05E /* MLUserCoreDataStorageObject.m */; };
 		083B9C7216D39E51000BA05E /* ILRecipientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B9C7116D39E51000BA05E /* ILRecipientsViewController.m */; };
 		083B9C7616D3A379000BA05E /* CLRosterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083B9C7516D3A379000BA05E /* CLRosterController.m */; };
+		085334E016D7EAF700BA3714 /* NSString+FirstCapitalized.m in Sources */ = {isa = PBXBuildFile; fileRef = 085334DF16D7EAF700BA3714 /* NSString+FirstCapitalized.m */; };
 		086B2E8516A604FA003EDEE7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 086B2E8216A604FA003EDEE7 /* Default-568h@2x.png */; };
 		086B2E8616A604FA003EDEE7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 086B2E8316A604FA003EDEE7 /* Default.png */; };
 		086B2E8716A604FA003EDEE7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 086B2E8416A604FA003EDEE7 /* Default@2x.png */; };
@@ -87,6 +88,9 @@
 		08797BB416A7510D002E5173 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08797BB316A7510D002E5173 /* SystemConfiguration.framework */; };
 		087F616516D3B22B001EEFDB /* ILAddRecipientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 087F616416D3B22B001EEFDB /* ILAddRecipientsViewController.m */; };
 		087F616916D3BF74001EEFDB /* PLComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 087F616816D3BF74001EEFDB /* PLComment.m */; };
+		08CE1E2E16D6F9BF00ECCB23 /* CLModuleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CE1E2D16D6F9BF00ECCB23 /* CLModuleController.m */; };
+		08CE1E6616D7D39E00ECCB23 /* PLModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CE1E6516D7D39E00ECCB23 /* PLModule.m */; };
+		08CE1E6916D7D41E00ECCB23 /* PLCommentModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 08CE1E6816D7D41E00ECCB23 /* PLCommentModule.m */; };
 		08D5524316C1B9AA00A62F6F /* CLXMPPController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D5520816C1B9AA00A62F6F /* CLXMPPController.m */; };
 		08D5524416C1B9AA00A62F6F /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D5520B16C1B9AA00A62F6F /* KeychainItemWrapper.m */; };
 		08D5524516C1B9AA00A62F6F /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D5520D16C1B9AA00A62F6F /* PreferencesController.m */; };
@@ -107,7 +111,6 @@
 		08D5525616C1B9AA00A62F6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D5523C16C1B9AA00A62F6F /* AppDelegate.m */; };
 		08D5525716C1B9AA00A62F6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D5523D16C1B9AA00A62F6F /* main.m */; };
 		08D5529216C28AD100A62F6F /* XMPPMessage+MLEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D5529116C28AD000A62F6F /* XMPPMessage+MLEvent.m */; };
-		08D5529516C2974A00A62F6F /* CLModuleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D5529416C2974A00A62F6F /* CLModuleController.m */; };
 		49EB2B2B15430EF400BE61F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB2B2A15430EF400BE61F1 /* UIKit.framework */; };
 		49EB2B2D15430EF400BE61F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB2B2C15430EF400BE61F1 /* Foundation.framework */; };
 		49EB2B2F15430EF400BE61F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB2B2E15430EF400BE61F1 /* CoreGraphics.framework */; };
@@ -153,6 +156,8 @@
 		083B9C7116D39E51000BA05E /* ILRecipientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILRecipientsViewController.m; sourceTree = "<group>"; };
 		083B9C7416D3A379000BA05E /* CLRosterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLRosterController.h; sourceTree = "<group>"; };
 		083B9C7516D3A379000BA05E /* CLRosterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLRosterController.m; sourceTree = "<group>"; };
+		085334DE16D7EAF700BA3714 /* NSString+FirstCapitalized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+FirstCapitalized.h"; path = "Categories/NSString+FirstCapitalized.h"; sourceTree = "<group>"; };
+		085334DF16D7EAF700BA3714 /* NSString+FirstCapitalized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+FirstCapitalized.m"; path = "Categories/NSString+FirstCapitalized.m"; sourceTree = "<group>"; };
 		086B2E8216A604FA003EDEE7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		086B2E8316A604FA003EDEE7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		086B2E8416A604FA003EDEE7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -246,6 +251,13 @@
 		087F616416D3B22B001EEFDB /* ILAddRecipientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILAddRecipientsViewController.m; sourceTree = "<group>"; };
 		087F616716D3BF74001EEFDB /* PLComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLComment.h; sourceTree = "<group>"; };
 		087F616816D3BF74001EEFDB /* PLComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLComment.m; sourceTree = "<group>"; };
+		08CE1E2C16D6F9BF00ECCB23 /* CLModuleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLModuleController.h; sourceTree = "<group>"; };
+		08CE1E2D16D6F9BF00ECCB23 /* CLModuleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLModuleController.m; sourceTree = "<group>"; };
+		08CE1E6416D7D39D00ECCB23 /* PLModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLModule.h; sourceTree = "<group>"; };
+		08CE1E6516D7D39E00ECCB23 /* PLModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLModule.m; sourceTree = "<group>"; };
+		08CE1E6716D7D41D00ECCB23 /* PLCommentModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLCommentModule.h; sourceTree = "<group>"; };
+		08CE1E6816D7D41E00ECCB23 /* PLCommentModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLCommentModule.m; sourceTree = "<group>"; };
+		08CE1E6D16D7DB0A00ECCB23 /* MLModuleDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLModuleDataProtocol.h; sourceTree = "<group>"; };
 		08D5520716C1B9AA00A62F6F /* CLXMPPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLXMPPController.h; sourceTree = "<group>"; };
 		08D5520816C1B9AA00A62F6F /* CLXMPPController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLXMPPController.m; sourceTree = "<group>"; };
 		08D5520A16C1B9AA00A62F6F /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
@@ -292,8 +304,6 @@
 		08D5524216C1B9AA00A62F6F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		08D5529016C28ACF00A62F6F /* XMPPMessage+MLEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMPPMessage+MLEvent.h"; sourceTree = "<group>"; };
 		08D5529116C28AD000A62F6F /* XMPPMessage+MLEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XMPPMessage+MLEvent.m"; sourceTree = "<group>"; };
-		08D5529316C2974900A62F6F /* CLModuleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLModuleController.h; sourceTree = "<group>"; };
-		08D5529416C2974A00A62F6F /* CLModuleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLModuleController.m; sourceTree = "<group>"; };
 		49EB2B2615430EF400BE61F1 /* socialiPhoneApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = socialiPhoneApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EB2B2A15430EF400BE61F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		49EB2B2C15430EF400BE61F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -397,19 +407,20 @@
 		083B9C5A16D39C79000BA05E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				083B9C5B16D39C79000BA05E /* MLCommentCoreDataStorageObject.h */,
-				083B9C5C16D39C79000BA05E /* MLCommentCoreDataStorageObject.m */,
 				083B9C5D16D39C79000BA05E /* MLEvent.xcdatamodeld */,
 				083B9C5F16D39C79000BA05E /* MLEventCoreDataStorage.h */,
 				083B9C6016D39C79000BA05E /* MLEventCoreDataStorage.m */,
 				083B9C6116D39C79000BA05E /* MLEventCoreDataStorageObject.h */,
 				083B9C6216D39C79000BA05E /* MLEventCoreDataStorageObject.m */,
+				083B9C5B16D39C79000BA05E /* MLCommentCoreDataStorageObject.h */,
+				083B9C5C16D39C79000BA05E /* MLCommentCoreDataStorageObject.m */,
 				083B9C6316D39C79000BA05E /* MLImageCoreDataStorageObject.h */,
 				083B9C6416D39C79000BA05E /* MLImageCoreDataStorageObject.m */,
 				083B9C6516D39C79000BA05E /* MLModuleDataCoreDataStorageObject.h */,
 				083B9C6616D39C79000BA05E /* MLModuleDataCoreDataStorageObject.m */,
 				083B9C6716D39C79000BA05E /* MLUserCoreDataStorageObject.h */,
 				083B9C6816D39C79000BA05E /* MLUserCoreDataStorageObject.m */,
+				08CE1E6D16D7DB0A00ECCB23 /* MLModuleDataProtocol.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -689,6 +700,8 @@
 		087F616616D3BF49001EEFDB /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				08CE1E6716D7D41D00ECCB23 /* PLCommentModule.h */,
+				08CE1E6816D7D41E00ECCB23 /* PLCommentModule.m */,
 				087F616716D3BF74001EEFDB /* PLComment.h */,
 				087F616816D3BF74001EEFDB /* PLComment.m */,
 			);
@@ -698,6 +711,8 @@
 		08D5520616C1B9AA00A62F6F /* Communication */ = {
 			isa = PBXGroup;
 			children = (
+				08CE1E2C16D6F9BF00ECCB23 /* CLModuleController.h */,
+				08CE1E2D16D6F9BF00ECCB23 /* CLModuleController.m */,
 				08D5520716C1B9AA00A62F6F /* CLXMPPController.h */,
 				08D5520816C1B9AA00A62F6F /* CLXMPPController.m */,
 			);
@@ -809,6 +824,8 @@
 				08D5523F16C1B9AA00A62F6F /* socialiPhoneApp-Prefix.pch */,
 				08D5524016C1B9AA00A62F6F /* SOLogging.h */,
 				08D5524116C1B9AA00A62F6F /* XMPPFramework.h */,
+				085334DE16D7EAF700BA3714 /* NSString+FirstCapitalized.h */,
+				085334DF16D7EAF700BA3714 /* NSString+FirstCapitalized.m */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -826,10 +843,10 @@
 		08D5525B16C272FB00A62F6F /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				08CE1E6416D7D39D00ECCB23 /* PLModule.h */,
+				08CE1E6516D7D39E00ECCB23 /* PLModule.m */,
 				08D5529016C28ACF00A62F6F /* XMPPMessage+MLEvent.h */,
 				08D5529116C28AD000A62F6F /* XMPPMessage+MLEvent.m */,
-				08D5529316C2974900A62F6F /* CLModuleController.h */,
-				08D5529416C2974A00A62F6F /* CLModuleController.m */,
 				083B9C2F16D2D521000BA05E /* PLEvent.h */,
 				083B9C3016D2D522000BA05E /* PLEvent.m */,
 			);
@@ -1033,7 +1050,6 @@
 				08D5525616C1B9AA00A62F6F /* AppDelegate.m in Sources */,
 				08D5525716C1B9AA00A62F6F /* main.m in Sources */,
 				08D5529216C28AD100A62F6F /* XMPPMessage+MLEvent.m in Sources */,
-				08D5529516C2974A00A62F6F /* CLModuleController.m in Sources */,
 				083B9C3116D2D523000BA05E /* PLEvent.m in Sources */,
 				083B9C4916D38DC7000BA05E /* ILCommentEventCell.m in Sources */,
 				083B9C5116D39786000BA05E /* ILTimelineViewController.m in Sources */,
@@ -1049,6 +1065,10 @@
 				083B9C7616D3A379000BA05E /* CLRosterController.m in Sources */,
 				087F616516D3B22B001EEFDB /* ILAddRecipientsViewController.m in Sources */,
 				087F616916D3BF74001EEFDB /* PLComment.m in Sources */,
+				08CE1E2E16D6F9BF00ECCB23 /* CLModuleController.m in Sources */,
+				08CE1E6616D7D39E00ECCB23 /* PLModule.m in Sources */,
+				08CE1E6916D7D41E00ECCB23 /* PLCommentModule.m in Sources */,
+				085334E016D7EAF700BA3714 /* NSString+FirstCapitalized.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
