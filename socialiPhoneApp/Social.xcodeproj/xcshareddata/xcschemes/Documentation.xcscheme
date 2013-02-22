@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "49EB2B2515430EF400BE61F1"
-               BuildableName = "socialiPhoneApp.app"
-               BlueprintName = "socialiPhoneApp"
-               ReferencedContainer = "container:socialiPhoneApp.xcodeproj">
+               BlueprintIdentifier = "49D604C616D4281D0006BB95"
+               BuildableName = "Documentation"
+               BlueprintName = "Documentation"
+               ReferencedContainer = "container:Social.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,15 +29,6 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "49EB2B2515430EF400BE61F1"
-            BuildableName = "socialiPhoneApp.app"
-            BlueprintName = "socialiPhoneApp"
-            ReferencedContainer = "container:socialiPhoneApp.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -48,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "49EB2B2515430EF400BE61F1"
-            BuildableName = "socialiPhoneApp.app"
-            BlueprintName = "socialiPhoneApp"
-            ReferencedContainer = "container:socialiPhoneApp.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -66,15 +48,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "49EB2B2515430EF400BE61F1"
-            BuildableName = "socialiPhoneApp.app"
-            BlueprintName = "socialiPhoneApp"
-            ReferencedContainer = "container:socialiPhoneApp.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

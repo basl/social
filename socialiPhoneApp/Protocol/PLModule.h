@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
+/**
+ * All Modules inherit from this class.
+ */
 @interface PLModule : NSObject
 
 @end
