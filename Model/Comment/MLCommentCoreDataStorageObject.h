@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "MLModuleDataCoreDataStorageObject.h"
-#import "MLModuleDataProtocol.h"
 
-@interface MLCommentCoreDataStorageObject : MLModuleDataCoreDataStorageObject <MLModuleDataProtocol>
+@interface MLCommentCoreDataStorageObject : MLModuleDataCoreDataStorageObject
 
 @property (nonatomic, retain) NSString * body;
 
