@@ -9,12 +9,12 @@
 #import "ILCommentComposeViewController.h"
 #import "XMPPMessage+MLEvent.h"
 #import "PLEvent.h"
-#import "CLXMPPController.h"
+#import "PLComment.h"
+#import "CLModuleController.h"
 #import "MLEventCoreDataStorageObject.h"
 #import "MLUserCoreDataStorageObject.h"
 #import "ILCommentBodyCell.h"
 #import "ILRecipientsViewController.h"
-#import "SOLogging.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -155,16 +155,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                           from:nil
                                             to:self.recipients];
     
+    PLComment *comment = [PLComment commentWithEvent:event body:self.bodyText.text];
     
-    //TODO: create subclass of PLEvent for Comment
-    NSXMLElement *body = [[NSXMLElement alloc] initWithName:@"body"];
-    [body setStringValue:self.bodyText.text];
-    
-    NSXMLElement *comment = [[NSXMLElement alloc] initWithName:@"comment"];
-    [comment addChild:body];
-    [event setData:comment];
-    
-    [[CLXMPPController sharedInstance] sendEvent:event toUser:self.recipients];
+    [[CLModuleController sharedInstance] sendEvent:comment toUser:self.recipients];
     
     if (self.delegate) {
         [self.delegate done];

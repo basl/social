@@ -107,7 +107,7 @@
 		08D5525616C1B9AA00A62F6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D5523C16C1B9AA00A62F6F /* AppDelegate.m */; };
 		08D5525716C1B9AA00A62F6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D5523D16C1B9AA00A62F6F /* main.m */; };
 		08D5529216C28AD100A62F6F /* XMPPMessage+MLEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D5529116C28AD000A62F6F /* XMPPMessage+MLEvent.m */; };
-		08D5529516C2974A00A62F6F /* PLEventModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D5529416C2974A00A62F6F /* PLEventModule.m */; };
+		08D5529516C2974A00A62F6F /* CLModuleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D5529416C2974A00A62F6F /* CLModuleController.m */; };
 		49EB2B2B15430EF400BE61F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB2B2A15430EF400BE61F1 /* UIKit.framework */; };
 		49EB2B2D15430EF400BE61F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB2B2C15430EF400BE61F1 /* Foundation.framework */; };
 		49EB2B2F15430EF400BE61F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB2B2E15430EF400BE61F1 /* CoreGraphics.framework */; };
@@ -292,8 +292,8 @@
 		08D5524216C1B9AA00A62F6F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		08D5529016C28ACF00A62F6F /* XMPPMessage+MLEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMPPMessage+MLEvent.h"; sourceTree = "<group>"; };
 		08D5529116C28AD000A62F6F /* XMPPMessage+MLEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XMPPMessage+MLEvent.m"; sourceTree = "<group>"; };
-		08D5529316C2974900A62F6F /* PLEventModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLEventModule.h; sourceTree = "<group>"; };
-		08D5529416C2974A00A62F6F /* PLEventModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLEventModule.m; sourceTree = "<group>"; };
+		08D5529316C2974900A62F6F /* CLModuleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLModuleController.h; sourceTree = "<group>"; };
+		08D5529416C2974A00A62F6F /* CLModuleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLModuleController.m; sourceTree = "<group>"; };
 		49EB2B2615430EF400BE61F1 /* socialiPhoneApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = socialiPhoneApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EB2B2A15430EF400BE61F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		49EB2B2C15430EF400BE61F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -828,8 +828,8 @@
 			children = (
 				08D5529016C28ACF00A62F6F /* XMPPMessage+MLEvent.h */,
 				08D5529116C28AD000A62F6F /* XMPPMessage+MLEvent.m */,
-				08D5529316C2974900A62F6F /* PLEventModule.h */,
-				08D5529416C2974A00A62F6F /* PLEventModule.m */,
+				08D5529316C2974900A62F6F /* CLModuleController.h */,
+				08D5529416C2974A00A62F6F /* CLModuleController.m */,
 				083B9C2F16D2D521000BA05E /* PLEvent.h */,
 				083B9C3016D2D522000BA05E /* PLEvent.m */,
 			);
@@ -1033,7 +1033,7 @@
 				08D5525616C1B9AA00A62F6F /* AppDelegate.m in Sources */,
 				08D5525716C1B9AA00A62F6F /* main.m in Sources */,
 				08D5529216C28AD100A62F6F /* XMPPMessage+MLEvent.m in Sources */,
-				08D5529516C2974A00A62F6F /* PLEventModule.m in Sources */,
+				08D5529516C2974A00A62F6F /* CLModuleController.m in Sources */,
 				083B9C3116D2D523000BA05E /* PLEvent.m in Sources */,
 				083B9C4916D38DC7000BA05E /* ILCommentEventCell.m in Sources */,
 				083B9C5116D39786000BA05E /* ILTimelineViewController.m in Sources */,
@@ -1204,6 +1204,7 @@
 				49D604C816D4281D0006BB95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49EB2B2015430EF400BE61F1 /* Build configuration list for PBXProject "socialiPhoneApp" */ = {
 			isa = XCConfigurationList;

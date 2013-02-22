@@ -7,13 +7,11 @@
 //
 
 #import "ILTimelineViewController.h"
-#import "CLXMPPController.h"
-#import "PLEventModule.h"
+#import "CLModuleController.h"
 #import "MLEventCoreDataStorageObject.h"
 #import "MLUserCoreDataStorageObject.h"
 #import "MLModuleDataCoreDataStorageObject.h"
 #import "MLCommentCoreDataStorageObject.h"
-#import "SOLogging.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -85,15 +83,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (NSFetchedResultsController *)fetchedResultsController
 {
 	if (_fetchedResultsController == nil)
-	{
-        PLEventModule *eventModule = [CLXMPPController sharedInstance].eventModule;
-        if (eventModule == nil)
-        {
-            DDLogError(@"PLEventModule must not be null.");
-            return nil;
-        }
-        
-		NSManagedObjectContext *moc = [eventModule managedObjectContext];
+	{   
+		NSManagedObjectContext *moc = [[CLModuleController sharedInstance] managedObjectContext];
         if (moc == nil)
         {
             DDLogError(@"Managed Object Context of PLEventModule must not be null.");

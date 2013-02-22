@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class PLEventModule;
+@class CLModuleController;
 @class CLRosterController;
-@class PLEvent;
 
 @interface CLXMPPController : NSObject
 
@@ -18,7 +17,6 @@
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *host;
 @property (nonatomic, strong, readonly) CLRosterController *rosterController;
-@property (nonatomic, strong, readonly) PLEventModule *eventModule;
 
 /**
  * Singleton Method
@@ -31,9 +29,5 @@
  * @return TRUE, if the stream was or gets connected, FALSE otherwise.
  */
 - (BOOL)connect;
-
-- (void)sendEvent:(PLEvent *)event toUser:(NSArray *)jids;
-
-- (void)sendEventToUser:(NSString *)jid; //TODO: remove - testing
 
 @end

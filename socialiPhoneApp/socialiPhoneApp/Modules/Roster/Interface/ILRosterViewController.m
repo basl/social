@@ -10,7 +10,6 @@
 #import "CLXMPPController.h"
 #import "XMPPFramework.h"
 #import "CLRosterController.h"
-#import "SOLogging.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -165,7 +164,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     //TODO: remove - this is just a test
     
 	XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    [[CLXMPPController sharedInstance] sendEventToUser:[user.jid bare]];
+    [[CLModuleController sharedInstance] sendEventToUser:[user.jid bare]];
 }
 
 

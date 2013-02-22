@@ -8,7 +8,6 @@
 
 #import "PLComment.h"
 #import <objc/runtime.h>
-#import "SOLogging.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG

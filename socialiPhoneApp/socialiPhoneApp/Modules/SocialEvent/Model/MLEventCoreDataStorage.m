@@ -15,7 +15,6 @@
 #import "XMPPMessage+MLEvent.h"
 #import "PLEvent.h"
 #import "PLComment.h"
-#import "SOLogging.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -31,26 +30,27 @@ static NSString *const COMMENT = @"comment";
 
 @implementation MLEventCoreDataStorage
 
-+ (NSArray *)insertEventsInMessage:(XMPPMessage *)message
+//TODO: let factories create and store specific events - move this to CL
++ (void)insertEventsInMessage:(XMPPMessage *)message
               managedObjectContext:(NSManagedObjectContext *)moc
                       forTimeStamp:(NSDate *)stamp
 {
     if (moc == nil)
     {
         DDLogWarn(@"No ManagedObjectContext given to save events into.");
-        return nil;
+        return;
     }
     
     if (stamp == nil)
     {
         DDLogWarn(@"Can not create event without timestamp.");
-        return nil;
+        return;
     }
     
     if (![message hasValidEvents])
     {
         DDLogWarn(@"Message has no valid events.");
-        return nil;
+        return;
     }
     
 	NSString *eventClassName    = NSStringFromClass([MLEventCoreDataStorageObject class]);
@@ -64,7 +64,6 @@ static NSString *const COMMENT = @"comment";
     
     
     NSArray *events = [message getValidEvents];
-    NSMutableArray *persistedEvents = [[NSMutableArray alloc] initWithCapacity:[events count]];
     
     NSString *eventId;
     MLUserCoreDataStorageObject *fromUser;
@@ -139,11 +138,7 @@ static NSString *const COMMENT = @"comment";
             moduleData = imageModuleData;
         }
         newEvent.moduleData = moduleData;
-        
-        [persistedEvents addObject:newEvent];
     }
-    
-    return persistedEvents;
 }
 
 + (MLUserCoreDataStorageObject *)userForJID:(XMPPJID *)jid

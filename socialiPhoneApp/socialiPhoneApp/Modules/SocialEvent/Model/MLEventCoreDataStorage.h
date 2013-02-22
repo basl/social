@@ -13,8 +13,11 @@
 @interface MLEventCoreDataStorage : XMPPCoreDataStorage
 /**
  * Will try to save the contents of the message into the given context.
+ * @param message A XMLElement, that includes at least one specific event type (like PLComment)
+ * @param moc The managed object context to store the new objects into
+ * @param stamp For now the time is not an attribute of our event. So we have to add it from this parameter.
  */
-+ (NSArray *)insertEventsInMessage:(XMPPMessage *)message
++ (void)insertEventsInMessage:(XMPPMessage *)message
               managedObjectContext:(NSManagedObjectContext *)moc
                       forTimeStamp:(NSString *)stamp;
 @end

@@ -9,7 +9,6 @@
 #import "ILRecipientsViewController.h"
 #import "MLUserCoreDataStorageObject.h"
 #import "XMPPJID.h"
-#import "SOLogging.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG

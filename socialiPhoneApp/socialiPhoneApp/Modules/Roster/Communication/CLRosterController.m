@@ -8,7 +8,6 @@
 
 #import "CLRosterController.h"
 #import "XMPPFramework.h"
-#import "SOLogging.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG

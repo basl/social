@@ -34,4 +34,4 @@
 
 
 // Own Modules
-#import "PLEventModule.h" // base module
+#import "CLModuleController.h" // base module

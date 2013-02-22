@@ -11,7 +11,6 @@
 #import "ILRosterViewController.h"
 #import "KeychainItemWrapper.h"
 #import "PreferencesController.h"
-#import "SOLogging.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
