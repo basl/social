@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		08236D8816D82D7C008A31A0 /* MLCommentCoreDataStorageObject+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 08236D8716D82D7C008A31A0 /* MLCommentCoreDataStorageObject+Factory.m */; };
+		08236D8B16D8312F008A31A0 /* MLImageCoreDataStorageObject+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 08236D8A16D8312F008A31A0 /* MLImageCoreDataStorageObject+Factory.m */; };
 		0831083716B54CB300FDC40A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0831083616B54CB300FDC40A /* CoreData.framework */; };
 		0853355A16D80B4300BA3714 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 085334E416D80B4300BA3714 /* Default-568h@2x.png */; };
 		0853355B16D80B4300BA3714 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 085334E516D80B4300BA3714 /* Default.png */; };
@@ -120,6 +122,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08236D8616D82D7C008A31A0 /* MLCommentCoreDataStorageObject+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MLCommentCoreDataStorageObject+Factory.h"; sourceTree = "<group>"; };
+		08236D8716D82D7C008A31A0 /* MLCommentCoreDataStorageObject+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MLCommentCoreDataStorageObject+Factory.m"; sourceTree = "<group>"; };
+		08236D8916D8312F008A31A0 /* MLImageCoreDataStorageObject+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MLImageCoreDataStorageObject+Factory.h"; sourceTree = "<group>"; };
+		08236D8A16D8312F008A31A0 /* MLImageCoreDataStorageObject+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MLImageCoreDataStorageObject+Factory.m"; sourceTree = "<group>"; };
 		0831083616B54CB300FDC40A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		085334E416D80B4300BA3714 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		085334E516D80B4300BA3714 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -418,6 +424,8 @@
 			children = (
 				08930D7816D8177E00AA0D1A /* MLCommentCoreDataStorageObject.h */,
 				08930D7916D8177E00AA0D1A /* MLCommentCoreDataStorageObject.m */,
+				08236D8616D82D7C008A31A0 /* MLCommentCoreDataStorageObject+Factory.h */,
+				08236D8716D82D7C008A31A0 /* MLCommentCoreDataStorageObject+Factory.m */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -425,6 +433,8 @@
 		08930D7A16D8177E00AA0D1A /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				08236D8916D8312F008A31A0 /* MLImageCoreDataStorageObject+Factory.h */,
+				08236D8A16D8312F008A31A0 /* MLImageCoreDataStorageObject+Factory.m */,
 				08930D7B16D8177E00AA0D1A /* MLImageCoreDataStorageObject.h */,
 				08930D7C16D8177E00AA0D1A /* MLImageCoreDataStorageObject.m */,
 			);
@@ -1054,6 +1064,8 @@
 				49D6085716D8361B0006BB95 /* DDAbstractDatabaseLogger.m in Sources */,
 				49D6085816D8361B0006BB95 /* DDASLLogger.m in Sources */,
 				49D6085916D8361B0006BB95 /* DDFileLogger.m in Sources */,
+				08236D8816D82D7C008A31A0 /* MLCommentCoreDataStorageObject+Factory.m in Sources */,
+				08236D8B16D8312F008A31A0 /* MLImageCoreDataStorageObject+Factory.m in Sources */,
 				49D6085A16D8361B0006BB95 /* DDLog.m in Sources */,
 				49D6085B16D8361B0006BB95 /* DDTTYLogger.m in Sources */,
 				49D6085C16D8361B0006BB95 /* ContextFilterLogFormatter.m in Sources */,
