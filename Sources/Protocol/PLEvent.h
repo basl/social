@@ -27,6 +27,7 @@
 
 /**
  * Will convert the NSXMLElement into PLEvent without allocating memory.
+ * @param element is the NSXMLElement from which information is extracted to create a PLEvent
  * @return The event for the XMLElement.
  */
 + (PLEvent *)eventFromElement:(NSXMLElement *)element;
