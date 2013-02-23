@@ -13,6 +13,7 @@
 
 /**
  * This won't return a default value from the prefs. Should get fixed.
+ * @param name The name of the preference.
  * @return The saved integer for the name or 0, if none is defined jet.
  */
 +(int)getIntPrefForName:(NSString *)name;
@@ -25,6 +26,7 @@
 +(void)setIntPref:(int)value forKey:(NSString *)key;
 
 /**
+ * @param name The name of the preference.
  * @return The saved boolean value or false.
  */
 +(BOOL)getBoolPrefForName:(NSString *)name;
@@ -37,6 +39,7 @@
 +(void)setBoolPref:(BOOL)value forKey:(NSString *)key;
 
 /**
+ * @param name The name of the preference.
  * @return The saved string value or nil.
  */
 +(NSString*)getStringPrefForName:(NSString *)name;

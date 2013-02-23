@@ -25,6 +25,7 @@
 //---------------------------------------------------------------------------------------
 
 /**
+ * @param element The event in question.
  * @return True, if the given element conforms to the protocol (https://github.com/basl/social/wiki/Protocol)
  */
 + (BOOL)isValidEvent:(NSXMLElement *)element;

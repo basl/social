@@ -10,6 +10,16 @@
 
 @class XMPPMessage;
 
+/**
+ * This class persists events and delegates persisting specific module data to factories.
+ * The Factories to create the MLModuleDataCoreDataStorageObject follow these naming conventions:
+ *
+ * ML*Type*CoreDataStorageObject e.g.: MLCommentCoreDataStorageObject
+ *
+ * The *Type* MUST have a capital letter and the rest MUST be lowercase.
+ * The Type will be extracted from the element name of the specific event and transformed 
+ * to that needs.
+ */
 @interface MLEventCoreDataStorage : XMPPCoreDataStorage
 /**
  * Will try to save the contents of the message into the given context.

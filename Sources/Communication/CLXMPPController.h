@@ -11,6 +11,11 @@
 @class CLModuleController;
 @class CLRosterController;
 
+/**
+ * This class handles the stream.
+ *
+ * It will connect and disconnect and stores the credentials for the current connection.
+ */
 @interface CLXMPPController : NSObject
 
 @property (nonatomic, strong) NSString *jabberID;

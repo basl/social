@@ -22,11 +22,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 static const int ddLogLevel = LOG_LEVEL_INFO;
 #endif
 
-//TODO: extract into modules, let a factory create the events
-static NSString *const IMAGE = @"image";
-static NSString *const COMMENT = @"comment";
-
-
 @implementation MLEventCoreDataStorage {}
 
 //---------------------------------------------------------------------------------------

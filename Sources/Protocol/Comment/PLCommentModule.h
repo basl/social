@@ -8,7 +8,12 @@
 
 #import "PLModule.h"
 
+/**
+ * Comment Module for the Protocol Layer. 
+ * This Class handles sending of comments.
+ */
 @interface PLCommentModule : PLModule
+
 /**
  * Will send the comment to the recipients.
  * @param body The actual message of the comment.
