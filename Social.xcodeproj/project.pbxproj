@@ -1192,8 +1192,8 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Supporting Files/Social-Prefix.pch";
-				INFOPLIST_FILE = "Supporting Files/Social-Info.plist";
+				GCC_PREFIX_HEADER = "Sources/Supporting Files/Social-Prefix.pch";
+				INFOPLIST_FILE = "Sources/Supporting Files/Social-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1214,8 +1214,8 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Supporting Files/Social-Prefix.pch";
-				INFOPLIST_FILE = "Supporting Files/Social-Info.plist";
+				GCC_PREFIX_HEADER = "Sources/Supporting Files/Social-Prefix.pch";
+				INFOPLIST_FILE = "Sources/Supporting Files/Social-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
