@@ -15,9 +15,6 @@
 
 #pragma mark - Public Methods
 
-/**
- * Returns the saved integer for the name or 0, if none is defined jet.
- */
 +(int)getIntPrefForName:(NSString *)name
 {
     Boolean isCorrect = false;

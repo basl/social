@@ -18,7 +18,7 @@
     if (events != nil)
     {
         for (NSXMLElement *event in events) {
-            if ([self isValidEvent:event])
+            if ([PLEvent isValidEvent:event])
             {
                 hasEvents = YES;
                 break;
@@ -40,7 +40,7 @@
     NSMutableArray *validEvents = [[NSMutableArray alloc] initWithCapacity:[events count]];
     
     for (NSXMLElement *event in events) {
-        if ([self isValidEvent:event])
+        if ([PLEvent isValidEvent:event])
         {
             [validEvents addObject:event];
         }
@@ -51,9 +51,6 @@
 
 //TODO: move this to PLEvent
 //TODO: validate msg.from = event.from - for now...
-- (BOOL)isValidEvent:(NSXMLElement *)event
-{
-    return [event attributeForName:@"eventid"] != nil;
-}
+
 
 @end

@@ -15,6 +15,26 @@ static NSString * const RECIPIENT = @"recipient";
 @implementation PLEvent
 
 /////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - VALIDATION
+/////////////////////////////////////////////////////////////////////////////////////////
+
++ (BOOL)isValidEvent:(NSXMLElement *)element
+{
+    PLEvent *event = [PLEvent eventFromElement:element];
+
+    if (!event) return NO;
+    
+    if (![event from]) return NO;
+    
+    if (!event.eventId || [event.eventId isEqualToString:@""]) return NO;
+    
+    NSArray *recipients = event.recipients;
+    if (!recipients || [recipients count] == 0) return NO;
+    
+    return YES;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Creation
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -199,13 +219,19 @@ static NSString * const RECIPIENT = @"recipient";
 - (NSArray *)recipients
 {
     NSXMLElement *node = [self elementForName:RECIPIENTS];
+    
+    if (!node) return nil;
+    
     NSArray *elements = [node elementsForName:RECIPIENT];
     NSMutableArray *recipients = [NSMutableArray arrayWithCapacity:[elements count]];
     
     for (NSXMLElement *element in elements)
     {
         NSString *recipientJID = [[element attributeForName:@"jid"] stringValue];
-        [recipients addObject:[XMPPJID jidWithString:recipientJID]];
+        XMPPJID *jid = [XMPPJID jidWithString:recipientJID];
+        if (jid) {
+            [recipients addObject:jid];
+        }
     }
     
     return recipients;

@@ -20,6 +20,14 @@
 
 @interface PLEvent : NSXMLElement <NSCoding, NSCopying>
 
+/////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - VALIDATION
+/////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @return True, if the given element conforms to the protocol (https://github.com/basl/social/wiki/Protocol)
+ */
++ (BOOL)isValidEvent:(NSXMLElement *)element;
 
 /////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Creation
@@ -118,8 +126,11 @@
 /** 
  * @return NSArray of XMPPJID
  */
-- (NSArray *)recipients; // of XMPPJID
+- (NSArray *)recipients;
 
+/**
+ * @return The first child 
+ */
 - (NSXMLElement *)getData;
 
 @end
