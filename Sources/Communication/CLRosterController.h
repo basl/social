@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "XMPPRoster.h"
-
+/**
+ * Communication Layer of the Roster. 
+ * Will handle the initialization of the roster and its persistence store.
+ */
 @interface CLRosterController : NSObject <XMPPRosterDelegate, UIAlertViewDelegate>
 
 
