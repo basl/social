@@ -58,10 +58,17 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self teardownStream];
 }
 
+<<<<<<< HEAD
+//---------------------------------------------------------------------------------------
+#pragma mark Core Data
+//---------------------------------------------------------------------------------------
+=======
 
 //---------------------------------------------------------------------------------------
 #pragma mark Core Data
 //---------------------------------------------------------------------------------------
+
+>>>>>>> 3be486cc61597d009dbf45e60cead1c9ffc82db8
 - (NSManagedObjectContext *)managedObjectContext
 {
 	return [self.xmppRosterStorage mainThreadManagedObjectContext];

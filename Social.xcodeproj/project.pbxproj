@@ -288,8 +288,8 @@
 		49DAEF6616D8416600178FD8 /* MLModuleDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLModuleDataProtocol.h; sourceTree = "<group>"; };
 		49DAEF6716D8416600178FD8 /* MLUserCoreDataStorageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLUserCoreDataStorageObject.h; sourceTree = "<group>"; };
 		49DAEF6816D8416600178FD8 /* MLUserCoreDataStorageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLUserCoreDataStorageObject.m; sourceTree = "<group>"; };
-		49DAEF6B16D8416600178FD8 /* PLComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLComment.h; sourceTree = "<group>"; };
-		49DAEF6C16D8416600178FD8 /* PLComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLComment.m; sourceTree = "<group>"; };
+		49DAEF6B16D8416600178FD8 /* PLComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PLComment.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		49DAEF6C16D8416600178FD8 /* PLComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PLComment.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		49DAEF6D16D8416600178FD8 /* PLCommentModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLCommentModule.h; sourceTree = "<group>"; };
 		49DAEF6E16D8416600178FD8 /* PLCommentModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLCommentModule.m; sourceTree = "<group>"; };
 		49DAEF6F16D8416600178FD8 /* PLEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLEvent.h; sourceTree = "<group>"; };
