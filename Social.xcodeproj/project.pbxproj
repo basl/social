@@ -113,7 +113,6 @@
 		49DAEFB216D8416600178FD8 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAEF8316D8416600178FD8 /* KeychainItemWrapper.m */; };
 		49DAEFB316D8416600178FD8 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAEF8516D8416600178FD8 /* PreferencesController.m */; };
 		49DAEFB716D8416600178FD8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAEF9016D8416600178FD8 /* main.m */; };
-		49DAEFB816D8416600178FD8 /* Social-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEF9116D8416600178FD8 /* Social-Info.plist */; };
 		49DAEFC316D842A100178FD8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEFBA16D842A100178FD8 /* InfoPlist.strings */; };
 		49DAEFC416D842A100178FD8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEFBC16D842A100178FD8 /* Localizable.strings */; };
 		49DAEFC516D842A100178FD8 /* MainStoryboard.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEFBE16D842A100178FD8 /* MainStoryboard.strings */; };
@@ -970,7 +969,6 @@
 				49D6085E16D8361B0006BB95 /* README.txt in Resources */,
 				49D6088816D8361B0006BB95 /* build-libidn.sh in Resources */,
 				49DAEF9F16D8416600178FD8 /* MainStoryboard.storyboard in Resources */,
-				49DAEFB816D8416600178FD8 /* Social-Info.plist in Resources */,
 				49DAEFC316D842A100178FD8 /* InfoPlist.strings in Resources */,
 				49DAEFC416D842A100178FD8 /* Localizable.strings in Resources */,
 				49DAEFC516D842A100178FD8 /* MainStoryboard.strings in Resources */,

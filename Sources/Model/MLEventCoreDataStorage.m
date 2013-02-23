@@ -29,8 +29,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 //---------------------------------------------------------------------------------------
 
 + (void)insertEventsInMessage:(XMPPMessage *)message
-              managedObjectContext:(NSManagedObjectContext *)moc
-                      forTimeStamp:(NSDate *)stamp
+         managedObjectContext:(NSManagedObjectContext *)moc
+                 forTimeStamp:(NSDate *)stamp
 {
     if (moc == nil)
     {
@@ -50,27 +50,17 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         return;
     }
     
-    
-    
-    
-    NSArray *events = [message getValidEvents];
-    
-    NSString *eventId;
-    MLUserCoreDataStorageObject *fromUser;
-    MLUserCoreDataStorageObject *toUser;
-    NSMutableSet *recipients = [NSMutableSet set];
-    
-    for (NSXMLElement *eventXML in events) {
+    for (NSXMLElement *eventXML in [message getValidEvents]) {
         
         PLEvent *event = [PLEvent eventFromElement:eventXML];
         
-        eventId = event.eventId;
+        NSString *eventId = event.eventId;
         
-        // Parent ID is optional, but if its present, then the parent MUST be available
+        // Parent ID is optional, but if its present, then the parent MUST be persisted
         MLEventCoreDataStorageObject *parent;
         NSString *parentId = event.parentId;
         if (parentId != nil) {
-            parent = [MLEventCoreDataStorage eventForID:parentId managedObjectContext:moc];
+            parent = [MLEventCoreDataStorage fetchEventForID:parentId managedObjectContext:moc];
             if (parent == nil)
             {
                 DDLogError(@"Structural Error: Parent of event not persisted. Discarding Event.");
@@ -78,16 +68,17 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             }
         }
         
-        NSString *fromStr = [event.from bare];
-        fromUser = [MLEventCoreDataStorage getOrCreateUserForBareJID:fromStr managedObjectContext:moc];
+        MLUserCoreDataStorageObject *fromUser = [MLEventCoreDataStorage fetchOrCreateUserForJID:event.from managedObjectContext:moc];
         if (fromUser == nil)
         {
             DDLogError(@"Structural Error: Could not load or create user. Discarding Event.");
             break;
         }
         
+        MLUserCoreDataStorageObject *toUser;
+        NSMutableSet *recipients = [NSMutableSet set];
         for (XMPPJID *recipient in event.recipients) {
-            toUser = [MLEventCoreDataStorage getOrCreateUserForBareJID:[recipient bare] managedObjectContext:moc];
+            toUser = [MLEventCoreDataStorage fetchOrCreateUserForJIDStr:[recipient bare] managedObjectContext:moc];
             if (toUser == nil)
             {
                 DDLogError(@"Structural Error: Could not load or create user. Discarding Event.");
@@ -96,35 +87,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             [recipients addObject:toUser];
         }
         
-        // Check for the correct Module to create the ModuleDataObject
-        NSString * moduleName = event.type;
-        if (!moduleName) {
-            DDLogWarn(@"Could not determine type of event.");
-            break;
-        }
-        // The Factories to create the MLModuleDataCoreDataStorageObject follow these naming conventions:
-        // ML<Type>CoreDataStorageObject e.g.: MLCommentCoreDataStorageObject
-        // The Type MUST have a capital letter and the rest MUST be lowercase.
-        
-        moduleName = [moduleName firstCapRestLow];
-        if (!moduleName)
-        {
-            DDLogWarn(@"Module type could not be extracted from event.");
-            break;
-        }
-        moduleName = [NSString stringWithFormat:@"ML%@CoreDataStorageObject", moduleName];
-        
-        DDLogVerbose(@"Trying to load moduledata from %@.", moduleName);
-        
-        Class moduleDataStorage = NSClassFromString(moduleName);
-        
-        MLModuleDataCoreDataStorageObject *moduleData;
-        if ([moduleDataStorage conformsToProtocol:@protocol(MLModuleDataProtocol)])
-        {
-            Class<MLModuleDataProtocol> moduleClass = moduleDataStorage;
-            moduleData = [moduleClass createModuleDataForEvent:event
-                                          managedObjectContext:moc];
-        }
+        MLModuleDataCoreDataStorageObject *moduleData = [self createModuleDataForEvent:event
+                                                                  managedObjectContext:moc];
         if (!moduleData) {
             DDLogWarn(@"Could not create moduledata.");
             break;
@@ -139,9 +103,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         newEvent.parent = parent;
         newEvent.from = fromUser;
         [newEvent addReceiver:recipients];
-        
-        //TODO: the following is just a test! Implement Factory to create ModuleData from valid NSXMLElement
-        
         newEvent.moduleData = moduleData;
     }
 }
@@ -151,18 +112,56 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #pragma mark - PRIVATE METHODS
 //---------------------------------------------------------------------------------------
 
-+ (MLUserCoreDataStorageObject *)userForJID:(XMPPJID *)jid
-                       managedObjectContext:(NSManagedObjectContext *)moc
++ (MLModuleDataCoreDataStorageObject *)createModuleDataForEvent:(PLEvent *)event
+                                           managedObjectContext:(NSManagedObjectContext *)moc
+{
+    // Check for the correct Module to create the ModuleDataObject
+    NSString * moduleName = event.type;
+    if (!moduleName) {
+        DDLogWarn(@"Could not determine type of event.");
+        return nil;
+    }
+    // The Factories to create the MLModuleDataCoreDataStorageObject follow these naming conventions:
+    // ML*Type*CoreDataStorageObject e.g.: MLCommentCoreDataStorageObject
+    // The *Type* MUST have a capital letter and the rest MUST be lowercase.
+    
+    // Transform *Type* to fit naming conventions
+    moduleName = [moduleName firstCapRestLow];
+    if (!moduleName)
+    {
+        DDLogWarn(@"Module type could not be extracted from event.");
+        return nil;
+    }
+    moduleName = [NSString stringWithFormat:@"ML%@CoreDataStorageObject", moduleName];
+    
+    DDLogVerbose(@"Trying to load moduledata from %@.", moduleName);
+    
+    Class moduleDataStorage = NSClassFromString(moduleName);
+    
+    // Try to find the corresponding class for this module
+    MLModuleDataCoreDataStorageObject *moduleData;
+    if ([moduleDataStorage conformsToProtocol:@protocol(MLModuleDataProtocol)])
+    {
+        Class<MLModuleDataProtocol> moduleClass = moduleDataStorage;
+        moduleData = [moduleClass createModuleDataForEvent:event
+                                      managedObjectContext:moc];
+    }
+    
+    return moduleData;
+}
+
++ (MLUserCoreDataStorageObject *)fetchUserForJID:(XMPPJID *)jid
+                            managedObjectContext:(NSManagedObjectContext *)moc
 {
     if (jid == nil) return nil;
     if (moc == nil) return nil;
     
 	NSString *bareJIDStr = [jid bare];
-	return [self userForBareJID:bareJIDStr managedObjectContext:moc];
+	return [self fetchUserForJIDstr:bareJIDStr managedObjectContext:moc];
 }
 
-+ (MLUserCoreDataStorageObject *)userForBareJID:(NSString *)jid
-                           managedObjectContext:(NSManagedObjectContext *)moc
++ (MLUserCoreDataStorageObject *)fetchUserForJIDstr:(NSString *)jid
+                               managedObjectContext:(NSManagedObjectContext *)moc
 {
     if (jid == nil) return nil;
 	if (moc == nil) return nil;
@@ -185,14 +184,24 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	return (MLUserCoreDataStorageObject *)[results lastObject];
 }
 
-+ (MLUserCoreDataStorageObject *)getOrCreateUserForBareJID:(NSString *)jid
-                                      managedObjectContext:(NSManagedObjectContext *)moc
++ (MLUserCoreDataStorageObject *)fetchOrCreateUserForJID:(XMPPJID *)jid
+                                    managedObjectContext:(NSManagedObjectContext *)moc
 {
     if (jid == nil) return nil;
     if (moc == nil) return nil;
     
-    MLUserCoreDataStorageObject *user = [MLEventCoreDataStorage userForBareJID:jid
-                                                          managedObjectContext:moc];
+	NSString *bareJIDStr = [jid bare];
+	return [self fetchOrCreateUserForJIDStr:bareJIDStr managedObjectContext:moc];
+}
+
++ (MLUserCoreDataStorageObject *)fetchOrCreateUserForJIDStr:(NSString *)jid
+                                       managedObjectContext:(NSManagedObjectContext *)moc
+{
+    if (jid == nil) return nil;
+    if (moc == nil) return nil;
+    
+    MLUserCoreDataStorageObject *user = [MLEventCoreDataStorage fetchUserForJIDstr:jid
+                                                              managedObjectContext:moc];
     if (user == nil) {
         NSString *userClassName  = NSStringFromClass([MLUserCoreDataStorageObject class]);
         user = [NSEntityDescription insertNewObjectForEntityForName:userClassName
@@ -202,8 +211,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     return user;
 }
 
-+ (MLEventCoreDataStorageObject *)eventForID:(NSString *)eventId
-                        managedObjectContext:(NSManagedObjectContext *)moc
++ (MLEventCoreDataStorageObject *)fetchEventForID:(NSString *)eventId
+                             managedObjectContext:(NSManagedObjectContext *)moc
 {
     if (eventId == nil) return nil;
 	if (moc == nil)     return nil;
