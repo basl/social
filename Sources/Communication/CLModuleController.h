@@ -38,6 +38,7 @@
 /**
  * This is just a test. It will get removed soon.
  * Don't use it!
+ * @param jid XMPPJID added as recipient
  */
 - (void)sendEventToUser:(NSString *)jid; //TODO: remove - testing
 
