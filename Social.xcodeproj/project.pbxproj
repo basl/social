@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		0802E4C516DA77B8007ACF38 /* XMPPPubSub.m in Sources */ = {isa = PBXBuildFile; fileRef = 0802E4C416DA77B8007ACF38 /* XMPPPubSub.m */; };
 		0831083716B54CB300FDC40A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0831083616B54CB300FDC40A /* CoreData.framework */; };
 		0853355A16D80B4300BA3714 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 085334E416D80B4300BA3714 /* Default-568h@2x.png */; };
 		0853355B16D80B4300BA3714 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 085334E516D80B4300BA3714 /* Default.png */; };
@@ -122,6 +123,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0802E4C316DA77B8007ACF38 /* XMPPPubSub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPPubSub.h; sourceTree = "<group>"; };
+		0802E4C416DA77B8007ACF38 /* XMPPPubSub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPPubSub.m; sourceTree = "<group>"; };
 		0831083616B54CB300FDC40A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		085334E416D80B4300BA3714 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		085334E516D80B4300BA3714 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -342,6 +345,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0802E4C216DA77B8007ACF38 /* XEP-0060 */ = {
+			isa = PBXGroup;
+			children = (
+				0802E4C316DA77B8007ACF38 /* XMPPPubSub.h */,
+				0802E4C416DA77B8007ACF38 /* XMPPPubSub.m */,
+			);
+			path = "XEP-0060";
+			sourceTree = "<group>";
+		};
 		085334E216D80B4300BA3714 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
@@ -501,6 +513,7 @@
 				49D6050D16D836150006BB95 /* CoreDataStorage */,
 				49D6051416D836150006BB95 /* Reconnect */,
 				49D6051716D836150006BB95 /* Roster */,
+				0802E4C216DA77B8007ACF38 /* XEP-0060 */,
 				49D6057C16D836160006BB95 /* XEP-0065 */,
 				49D6057F16D836160006BB95 /* XEP-0082 */,
 				49D605B116D836160006BB95 /* XEP-0203 */,
@@ -1078,6 +1091,7 @@
 				49DAEFB216D8416600178FD8 /* KeychainItemWrapper.m in Sources */,
 				49DAEFB316D8416600178FD8 /* PreferencesController.m in Sources */,
 				49DAEFB716D8416600178FD8 /* main.m in Sources */,
+				0802E4C516DA77B8007ACF38 /* XMPPPubSub.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
