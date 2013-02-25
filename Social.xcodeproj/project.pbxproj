@@ -354,11 +354,12 @@
 			path = "XEP-0060";
 			sourceTree = "<group>";
 		};
-		085334E216D80B4300BA3714 /* Ressources */ = {
+		085334E216D80B4300BA3714 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				085334E316D80B4300BA3714 /* Images */,
 			);
+			name = Resources;
 			path = Ressources;
 			sourceTree = "<group>";
 		};
@@ -906,7 +907,7 @@
 				49DAEF6916D8416600178FD8 /* Protocol */,
 				49DAEF7B16D8416600178FD8 /* Supporting Files */,
 				49D6098816D83B7E0006BB95 /* libresolv.dylib */,
-				085334E216D80B4300BA3714 /* Ressources */,
+				085334E216D80B4300BA3714 /* Resources */,
 				08D5524216C1B9AA00A62F6F /* Settings.bundle */,
 				08930DC216D81F9300AA0D1A /* Frameworks */,
 				49EB2B2715430EF400BE61F1 /* Products */,
