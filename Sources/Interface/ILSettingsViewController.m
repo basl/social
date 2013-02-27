@@ -19,10 +19,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 static const int ddLogLevel = LOG_LEVEL_INFO;
 #endif
 
-static NSString *AUTOLOGIN      = @"auto_login";
-static NSString *HOSTNAME       = @"host_name";
-static NSString *CREDENTIALS    = @"credentials";
-
 @interface ILSettingsViewController ()
 
 @end
@@ -32,21 +28,21 @@ static NSString *CREDENTIALS    = @"credentials";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    BOOL autoLog = [PreferencesController getBoolPrefForName:AUTOLOGIN];
+    BOOL autoLog = [PreferencesController getBoolPrefForName:kILSettingsViewControllerAutoLogin];
     [self.autoLoginSwitch setOn:autoLog];
     
     if (autoLog)
     {
-        NSString *retHostName = [PreferencesController getStringPrefForName:HOSTNAME];
+        NSString *retHostName = [PreferencesController getStringPrefForName:kILSettingsViewControllerHostname];
         self.hostTextfield.text = retHostName;
         
-        KeychainItemWrapper *keychainPassword = [[KeychainItemWrapper alloc] initWithIdentifier:CREDENTIALS accessGroup:nil];
+        KeychainItemWrapper *keychainPassword = [[KeychainItemWrapper alloc] initWithIdentifier:kILSettingsViewControllerCredentials accessGroup:nil];
         NSString *retJID = [keychainPassword objectForKey:(__bridge id)kSecAttrAccount];
         NSString *retPassword = [keychainPassword objectForKey:(__bridge id)kSecValueData];
         self.jIDTextfield.text = retJID;
         self.pwdTextfield.text = retPassword;
         
-        [self login];
+        [self loginWithJabberId:self.jIDTextfield.text withPassword:self.pwdTextfield.text forHost:self.hostTextfield.text];
     }
 }
 
@@ -60,13 +56,13 @@ static NSString *CREDENTIALS    = @"credentials";
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-- (void)login
+- (void)loginWithJabberId:(NSString *)jid withPassword:(NSString *)password forHost:(NSString *)host
 {
     CLXMPPController *xmppController = [CLXMPPController sharedInstance];
     //TODO: check for correct jid and valid host
-    [xmppController setHost:self.hostTextfield.text];
-    [xmppController setJabberID:self.jIDTextfield.text];
-    [xmppController setPassword:self.pwdTextfield.text];
+    [xmppController setHost:host];
+    [xmppController setJabberID:jid];
+    [xmppController setPassword:password];
     if ([xmppController connect])
     {
         ILRosterViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ILRosterViewController"];
@@ -85,19 +81,19 @@ static NSString *CREDENTIALS    = @"credentials";
 {
     if ([self.autoLoginSwitch isOn])
     {
-        [PreferencesController setBoolPref:[self.autoLoginSwitch isOn] forKey:AUTOLOGIN];
-        [PreferencesController setStringPref:self.hostTextfield.text forKey:HOSTNAME];
+        [PreferencesController setBoolPref:[self.autoLoginSwitch isOn] forKey:kILSettingsViewControllerAutoLogin];
+        [PreferencesController setStringPref:self.hostTextfield.text forKey:kILSettingsViewControllerHostname];
         
-        KeychainItemWrapper *keychainPassword = [[KeychainItemWrapper alloc] initWithIdentifier:CREDENTIALS accessGroup:nil];
+        KeychainItemWrapper *keychainPassword = [[KeychainItemWrapper alloc] initWithIdentifier:kILSettingsViewControllerCredentials accessGroup:nil];
         [keychainPassword setObject:self.jIDTextfield.text forKey:(__bridge id)kSecAttrAccount];
         [keychainPassword setObject:self.pwdTextfield.text forKey:(__bridge id)kSecValueData];
     }
     
-    [self login];
+    [self loginWithJabberId:self.jIDTextfield.text withPassword:self.pwdTextfield.text forHost:self.hostTextfield.text];
 }
 
 - (IBAction)changeAutoLogin:(UISwitch *)sender {
-    [PreferencesController setBoolPref:[self.autoLoginSwitch isOn] forKey:AUTOLOGIN];
+    [PreferencesController setBoolPref:[self.autoLoginSwitch isOn] forKey:kILSettingsViewControllerAutoLogin];
     //TODO: Update (or delete) Credentials
 }
 
@@ -115,7 +111,7 @@ static NSString *CREDENTIALS    = @"credentials";
 	}
 	else if (textField == self.pwdTextfield) {
 		[textField resignFirstResponder];
-        [self login];
+        [self loginWithJabberId:self.jIDTextfield.text withPassword:self.pwdTextfield.text forHost:self.hostTextfield.text];
 	}
 	return YES;
 }

@@ -9,6 +9,10 @@
 #import "AppDelegate.h"
 #import "DDTTYLogger.h"
 
+#import "PreferencesController.h"
+#import "KeychainItemWrapper.h"
+#import "ILSettingsViewController.h"
+#import "CLXMPPController.h"
 
 @implementation AppDelegate
 
@@ -19,6 +23,25 @@
     // Configure logging framework
 	[DDLog addLogger:[DDTTYLogger sharedInstance]];
     
+    NSString *retHostName = [PreferencesController getStringPrefForName:kILSettingsViewControllerHostname];
+    
+    KeychainItemWrapper *keychainCredentials = [[KeychainItemWrapper alloc] initWithIdentifier:kILSettingsViewControllerCredentials accessGroup:nil];
+    NSString *retJID = [keychainCredentials objectForKey:(__bridge id)kSecAttrAccount];
+    NSString *retPassword = [keychainCredentials objectForKey:(__bridge id)kSecValueData];
+    
+    CLXMPPController *xmppController = [CLXMPPController sharedInstance];
+    //TODO: check for correct jid and valid host
+    [xmppController setHost:retHostName];
+    [xmppController setJabberID:retJID];
+    [xmppController setPassword:retPassword];
+    if (![xmppController connect])
+    {
+        // error accured! Warn User and provide option to change settings
+        ILSettingsViewController *settingsViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"ILSettingsViewController"];
+        self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
+        [self.window makeKeyAndVisible];
+    }
+
     return YES;
 }
 							

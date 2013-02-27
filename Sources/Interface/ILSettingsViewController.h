@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#define kILSettingsViewControllerAutoLogin @"auto_login"
+#define kILSettingsViewControllerHostname @"host_name"
+#define kILSettingsViewControllerCredentials @"credentials"
+
 @interface ILSettingsViewController : UIViewController <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *hostTextfield;
 @property (weak, nonatomic) IBOutlet UITextField *jIDTextfield;
