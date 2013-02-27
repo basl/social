@@ -50,13 +50,34 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"EmbedMainView"]) {
+        if ([segue.destinationViewController isKindOfClass:[UIViewController class]]) {
+            UIView *addedView = [((UIViewController *)segue.destinationViewController) view];
+            [self configureAddedMainViewSubview:addedView];
+        }
+        
+    }
+}
+
+#pragma mark - View Configuration
+
+- (void)configureAddedMainViewSubview:(UIView *)view
+{
+    view.layer.cornerRadius = 3.f;
+    view.clipsToBounds = YES;
+}
+
 #pragma mark - Getter and Setter
 
-- (void)setMainView:(UIView *)mainView {
+- (void)setMainView:(UIView *)mainView
+{
     if (_mainView != mainView) {
         _mainView = mainView;
         
-        mainView.layer.cornerRadius = 4.f;
+        
+        mainView.layer.cornerRadius = 3.f;
         mainView.layer.shadowColor = [[UIColor blackColor] CGColor];
         mainView.layer.shadowOpacity = 0.4f;
         mainView.layer.shadowOffset = CGSizeMake(-4.f, 0.f);
