@@ -28,22 +28,17 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    BOOL autoLog = [PreferencesController getBoolPrefForName:kILSettingsViewControllerAutoLogin];
-    [self.autoLoginSwitch setOn:autoLog];
     
-    if (autoLog)
-    {
-        NSString *retHostName = [PreferencesController getStringPrefForName:kILSettingsViewControllerHostname];
-        self.hostTextfield.text = retHostName;
-        
-        KeychainItemWrapper *keychainPassword = [[KeychainItemWrapper alloc] initWithIdentifier:kILSettingsViewControllerCredentials accessGroup:nil];
-        NSString *retJID = [keychainPassword objectForKey:(__bridge id)kSecAttrAccount];
-        NSString *retPassword = [keychainPassword objectForKey:(__bridge id)kSecValueData];
-        self.jIDTextfield.text = retJID;
-        self.pwdTextfield.text = retPassword;
-        
-        [self loginWithJabberId:self.jIDTextfield.text withPassword:self.pwdTextfield.text forHost:self.hostTextfield.text];
-    }
+    NSString *retHostName = [PreferencesController getStringPrefForName:kILSettingsViewControllerHostname];
+    self.hostTextfield.text = retHostName;
+    
+    KeychainItemWrapper *keychainPassword = [[KeychainItemWrapper alloc] initWithIdentifier:kILSettingsViewControllerCredentials accessGroup:nil];
+    NSString *retJID = [keychainPassword objectForKey:(__bridge id)kSecAttrAccount];
+    NSString *retPassword = [keychainPassword objectForKey:(__bridge id)kSecValueData];
+    self.jIDTextfield.text = retJID;
+    self.pwdTextfield.text = retPassword;
+    
+    [self loginWithJabberId:self.jIDTextfield.text withPassword:self.pwdTextfield.text forHost:self.hostTextfield.text];
 }
 
 - (void)viewDidUnload
@@ -65,6 +60,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [xmppController setPassword:password];
     if ([xmppController connect])
     {
+        //TODO: if the settingsview is loadid as a modalview
+        // then we should dismiss it and show the connectionstate somewhere
         ILRosterViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ILRosterViewController"];
 
         [self.navigationController pushViewController:controller animated:YES];
@@ -79,22 +76,13 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (IBAction)clickDone:(id)sender
 {
-    if ([self.autoLoginSwitch isOn])
-    {
-        [PreferencesController setBoolPref:[self.autoLoginSwitch isOn] forKey:kILSettingsViewControllerAutoLogin];
-        [PreferencesController setStringPref:self.hostTextfield.text forKey:kILSettingsViewControllerHostname];
-        
-        KeychainItemWrapper *keychainPassword = [[KeychainItemWrapper alloc] initWithIdentifier:kILSettingsViewControllerCredentials accessGroup:nil];
-        [keychainPassword setObject:self.jIDTextfield.text forKey:(__bridge id)kSecAttrAccount];
-        [keychainPassword setObject:self.pwdTextfield.text forKey:(__bridge id)kSecValueData];
-    }
+    [PreferencesController setStringPref:self.hostTextfield.text forKey:kILSettingsViewControllerHostname];
+    
+    KeychainItemWrapper *keychainPassword = [[KeychainItemWrapper alloc] initWithIdentifier:kILSettingsViewControllerCredentials accessGroup:nil];
+    [keychainPassword setObject:self.jIDTextfield.text forKey:(__bridge id)kSecAttrAccount];
+    [keychainPassword setObject:self.pwdTextfield.text forKey:(__bridge id)kSecValueData];
     
     [self loginWithJabberId:self.jIDTextfield.text withPassword:self.pwdTextfield.text forHost:self.hostTextfield.text];
-}
-
-- (IBAction)changeAutoLogin:(UISwitch *)sender {
-    [PreferencesController setBoolPref:[self.autoLoginSwitch isOn] forKey:kILSettingsViewControllerAutoLogin];
-    //TODO: Update (or delete) Credentials
 }
 
 

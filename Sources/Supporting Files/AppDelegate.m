@@ -38,6 +38,7 @@
     {
         // error accured! Warn User and provide option to change settings
         ILSettingsViewController *settingsViewController = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"ILSettingsViewController"];
+        //TODO: Better load it as a modalview?
         self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
         [self.window makeKeyAndVisible];
     }
