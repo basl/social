@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ILSideBarTableViewControllerDelegate.h"
 
 @interface ILSideBarTableViewController : UITableViewController
 @property (weak, nonatomic) IBOutlet UIView *tableViewFooter;
-
+@property (nonatomic, weak) id<ILSideBarTableViewControllerDelegate>delegate;
 @end

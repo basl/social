@@ -91,7 +91,6 @@
 		49DAEF9A16D8416600178FD8 /* ILCommentEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAEF4616D8416600178FD8 /* ILCommentEventCell.m */; };
 		49DAEF9B16D8416600178FD8 /* ILAddRecipientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAEF4816D8416600178FD8 /* ILAddRecipientsViewController.m */; };
 		49DAEF9C16D8416600178FD8 /* ILRecipientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAEF4A16D8416600178FD8 /* ILRecipientsViewController.m */; };
-		49DAEF9D16D8416600178FD8 /* ILSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAEF4C16D8416600178FD8 /* ILSettingsViewController.m */; };
 		49DAEF9E16D8416600178FD8 /* ILTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAEF4E16D8416600178FD8 /* ILTimelineViewController.m */; };
 		49DAEF9F16D8416600178FD8 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEF4F16D8416600178FD8 /* MainStoryboard.storyboard */; };
 		49DAEFA016D8416600178FD8 /* ILRosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAEF5216D8416600178FD8 /* ILRosterViewController.m */; };
@@ -134,6 +133,8 @@
 		49DAEFED16DD505C00178FD8 /* ILSideBarContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAEFEC16DD505C00178FD8 /* ILSideBarContainerViewController.m */; };
 		49DAEFF016DD518A00178FD8 /* ILSideBarTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAEFEF16DD518A00178FD8 /* ILSideBarTableViewController.m */; };
 		49DAEFF416DD62FF00178FD8 /* ILAnimationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAEFF316DD62FF00178FD8 /* ILAnimationUtil.m */; };
+		49DAEFF716DE9CC200178FD8 /* ILLaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAEFF616DE9CC200178FD8 /* ILLaunchViewController.m */; };
+		49DAEFFD16DEBC7D00178FD8 /* ILSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DAEFFC16DEBC7D00178FD8 /* ILSettingsViewController.m */; };
 		49EB2B2B15430EF400BE61F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB2B2A15430EF400BE61F1 /* UIKit.framework */; };
 		49EB2B2D15430EF400BE61F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB2B2C15430EF400BE61F1 /* Foundation.framework */; };
 		49EB2B2F15430EF400BE61F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EB2B2E15430EF400BE61F1 /* CoreGraphics.framework */; };
@@ -282,8 +283,6 @@
 		49DAEF4816D8416600178FD8 /* ILAddRecipientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILAddRecipientsViewController.m; sourceTree = "<group>"; };
 		49DAEF4916D8416600178FD8 /* ILRecipientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILRecipientsViewController.h; sourceTree = "<group>"; };
 		49DAEF4A16D8416600178FD8 /* ILRecipientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILRecipientsViewController.m; sourceTree = "<group>"; };
-		49DAEF4B16D8416600178FD8 /* ILSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSettingsViewController.h; sourceTree = "<group>"; };
-		49DAEF4C16D8416600178FD8 /* ILSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSettingsViewController.m; sourceTree = "<group>"; };
 		49DAEF4D16D8416600178FD8 /* ILTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILTimelineViewController.h; sourceTree = "<group>"; };
 		49DAEF4E16D8416600178FD8 /* ILTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILTimelineViewController.m; sourceTree = "<group>"; };
 		49DAEF4F16D8416600178FD8 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -356,6 +355,13 @@
 		49DAEFEF16DD518A00178FD8 /* ILSideBarTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSideBarTableViewController.m; sourceTree = "<group>"; };
 		49DAEFF216DD62FF00178FD8 /* ILAnimationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILAnimationUtil.h; sourceTree = "<group>"; };
 		49DAEFF316DD62FF00178FD8 /* ILAnimationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILAnimationUtil.m; sourceTree = "<group>"; };
+		49DAEFF516DE9CC200178FD8 /* ILLaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILLaunchViewController.h; sourceTree = "<group>"; };
+		49DAEFF616DE9CC200178FD8 /* ILLaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILLaunchViewController.m; sourceTree = "<group>"; };
+		49DAEFF816DEA0F400178FD8 /* ILMainViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILMainViewControllerDelegate.h; sourceTree = "<group>"; };
+		49DAEFF916DEA17600178FD8 /* ILSideBarTableViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSideBarTableViewControllerDelegate.h; sourceTree = "<group>"; };
+		49DAEFFB16DEBC7D00178FD8 /* ILSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSettingsViewController.h; sourceTree = "<group>"; };
+		49DAEFFC16DEBC7D00178FD8 /* ILSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILSettingsViewController.m; sourceTree = "<group>"; };
+		49DAEFFE16DEBC9E00178FD8 /* ILSettingsViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILSettingsViewControllerDelegate.h; sourceTree = "<group>"; };
 		49EB2B2615430EF400BE61F1 /* Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Social.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EB2B2A15430EF400BE61F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		49EB2B2C15430EF400BE61F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -782,6 +788,7 @@
 		49DAEF3F16D8416600178FD8 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				49DAEFFA16DEBC7D00178FD8 /* Settings */,
 				49DAEFF116DD62D700178FD8 /* Utility */,
 				49DAEFE716DD502500178FD8 /* SideBar */,
 				49DAEF4016D8416600178FD8 /* Comment */,
@@ -789,8 +796,6 @@
 				49DAEF4816D8416600178FD8 /* ILAddRecipientsViewController.m */,
 				49DAEF4916D8416600178FD8 /* ILRecipientsViewController.h */,
 				49DAEF4A16D8416600178FD8 /* ILRecipientsViewController.m */,
-				49DAEF4B16D8416600178FD8 /* ILSettingsViewController.h */,
-				49DAEF4C16D8416600178FD8 /* ILSettingsViewController.m */,
 				49DAEF4D16D8416600178FD8 /* ILTimelineViewController.h */,
 				49DAEF4E16D8416600178FD8 /* ILTimelineViewController.m */,
 				49DAEF4F16D8416600178FD8 /* MainStoryboard.storyboard */,
@@ -966,6 +971,10 @@
 				49DAEFEC16DD505C00178FD8 /* ILSideBarContainerViewController.m */,
 				49DAEFEE16DD518A00178FD8 /* ILSideBarTableViewController.h */,
 				49DAEFEF16DD518A00178FD8 /* ILSideBarTableViewController.m */,
+				49DAEFF516DE9CC200178FD8 /* ILLaunchViewController.h */,
+				49DAEFF616DE9CC200178FD8 /* ILLaunchViewController.m */,
+				49DAEFF816DEA0F400178FD8 /* ILMainViewControllerDelegate.h */,
+				49DAEFF916DEA17600178FD8 /* ILSideBarTableViewControllerDelegate.h */,
 			);
 			path = SideBar;
 			sourceTree = "<group>";
@@ -977,6 +986,16 @@
 				49DAEFF316DD62FF00178FD8 /* ILAnimationUtil.m */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		49DAEFFA16DEBC7D00178FD8 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				49DAEFFB16DEBC7D00178FD8 /* ILSettingsViewController.h */,
+				49DAEFFC16DEBC7D00178FD8 /* ILSettingsViewController.m */,
+				49DAEFFE16DEBC9E00178FD8 /* ILSettingsViewControllerDelegate.h */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		49EB2B1B15430EF400BE61F1 = {
@@ -1165,7 +1184,6 @@
 				49DAEF9A16D8416600178FD8 /* ILCommentEventCell.m in Sources */,
 				49DAEF9B16D8416600178FD8 /* ILAddRecipientsViewController.m in Sources */,
 				49DAEF9C16D8416600178FD8 /* ILRecipientsViewController.m in Sources */,
-				49DAEF9D16D8416600178FD8 /* ILSettingsViewController.m in Sources */,
 				49DAEF9E16D8416600178FD8 /* ILTimelineViewController.m in Sources */,
 				49DAEFA016D8416600178FD8 /* ILRosterViewController.m in Sources */,
 				49DAEFA116D8416600178FD8 /* MLCommentCoreDataStorageObject+Factory.m in Sources */,
@@ -1191,6 +1209,8 @@
 				49DAEFED16DD505C00178FD8 /* ILSideBarContainerViewController.m in Sources */,
 				49DAEFF016DD518A00178FD8 /* ILSideBarTableViewController.m in Sources */,
 				49DAEFF416DD62FF00178FD8 /* ILAnimationUtil.m in Sources */,
+				49DAEFF716DE9CC200178FD8 /* ILLaunchViewController.m in Sources */,
+				49DAEFFD16DEBC7D00178FD8 /* ILSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

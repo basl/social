@@ -203,7 +203,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		return YES;
 	}
 	
-	if (self.jabberID == nil || self.password == nil)
+	if (self.jabberID == nil ||
+        self.password == nil ||
+        [self.jabberID isEqualToString:@""] ||
+        [self.password isEqualToString:@""])
     {
 		return NO;
 	}

@@ -38,7 +38,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     self.jIDTextfield.text = retJID;
     self.pwdTextfield.text = retPassword;
     
-    [self loginWithJabberId:self.jIDTextfield.text withPassword:self.pwdTextfield.text forHost:self.hostTextfield.text];
+    //[self loginWithJabberId:self.jIDTextfield.text withPassword:self.pwdTextfield.text forHost:self.hostTextfield.text];
 }
 
 - (void)viewDidUnload
@@ -62,9 +62,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     {
         //TODO: if the settingsview is loadid as a modalview
         // then we should dismiss it and show the connectionstate somewhere
-        ILRosterViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ILRosterViewController"];
+        //ILRosterViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"ILRosterViewController"];
 
-        [self.navigationController pushViewController:controller animated:YES];
+        //[self.navigationController pushViewController:controller animated:YES];
+        [self.delegate connectionSuccessfull];
     }
     else
     {

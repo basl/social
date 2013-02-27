@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ILSideBarTableViewController.h"
+#import "ILMainViewControllerDelegate.h"
+#import "ILSideBarTableViewControllerDelegate.h"
 
-@interface ILSideBarContainerViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIView *mainView;
+@interface ILSideBarContainerViewController : UIViewController<ILMainViewControllerDelegate, ILSideBarTableViewControllerDelegate>
+@property (weak, nonatomic) IBOutlet UIView *mainViewContainer;
 @property (weak, nonatomic) IBOutlet UIView *sideBarView;
 @property (nonatomic, strong) ILSideBarTableViewController *sideBarViewController;
 @end
