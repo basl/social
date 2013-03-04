@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface ILCommentEventCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *attributedTextLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 
+- (float)calculatedHeight;
+- (void)createShadow;
+
++ (float)expectedHeightWithText:(NSString *)text;
 @end

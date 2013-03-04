@@ -8,22 +8,45 @@
 
 #import "ILCommentEventCell.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @implementation ILCommentEventCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+#pragma mark - Public Methods
+
+- (void)createShadow
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    self.attributedTextLabel.superview.layer.shadowColor = [[UIColor grayColor] CGColor];
+    self.attributedTextLabel.superview.layer.shadowOpacity = 0.6f;
+    self.attributedTextLabel.superview.layer.shadowRadius = 4.f;
+    self.attributedTextLabel.superview.layer.shadowPath = [[UIBezierPath bezierPathWithRect:self.attributedTextLabel.superview.bounds] CGPath];
+    self.attributedTextLabel.superview.layer.shadowOffset = CGSizeMake(0.f, 1.f);
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (float)calculatedHeight
 {
-    [super setSelected:selected animated:animated];
+    float calculatedHeight = 0.f;
+    
+    CGSize size = [self.attributedTextLabel.text sizeWithFont:self.attributedTextLabel.font
+                                                     forWidth:self.attributedTextLabel.bounds.size.width
+                                                lineBreakMode:self.attributedTextLabel.lineBreakMode];
+    
+    calculatedHeight = size.height;
+    
+    return calculatedHeight;
+}
 
-    // Configure the view for the selected state
++ (float)expectedHeightWithText:(NSString *)text
+{
+    float calculatedHeight = 0.f;
+    
+    CGSize size = [text sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:14.f]
+                            constrainedToSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 77.f, 100000.f)];
+    
+    calculatedHeight = size.height;
+    calculatedHeight += 22.f;
+    
+    return MAX(calculatedHeight, 60.f);
 }
 
 @end

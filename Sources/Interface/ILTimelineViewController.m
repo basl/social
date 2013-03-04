@@ -7,6 +7,7 @@
 //
 
 #import "ILTimelineViewController.h"
+#import "ILCommentEventCell.h"
 #import "CLModuleController.h"
 #import "MLEventCoreDataStorageObject.h"
 #import "MLUserCoreDataStorageObject.h"
@@ -164,21 +165,42 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ILCommentCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    ILCommentEventCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     MLEventCoreDataStorageObject *event = [self.fetchedResultsController objectAtIndexPath:indexPath];
     MLModuleDataCoreDataStorageObject *moduleData = event.moduleData;
     
     if ([moduleData isKindOfClass:[MLCommentCoreDataStorageObject class]]) {
-        cell.textLabel.text = ((MLCommentCoreDataStorageObject *)moduleData).body;
+        cell.attributedTextLabel.text = ((MLCommentCoreDataStorageObject *)moduleData).body;
     }
     else
     {
-        cell.textLabel.text = event.eventId;
+        cell.attributedTextLabel.text = event.eventId;
     }
-    cell.detailTextLabel.text = event.from.jid;
+    //cell.detailTextLabel.text = event.from.jid;
+    [cell createShadow];
     
     return cell;
+}
+
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    float heightForRow = 0.f;
+    
+    MLEventCoreDataStorageObject *event = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    MLModuleDataCoreDataStorageObject *moduleData = event.moduleData;
+    
+    if ([moduleData isKindOfClass:[MLCommentCoreDataStorageObject class]]) {
+        heightForRow = [ILCommentEventCell expectedHeightWithText:((MLCommentCoreDataStorageObject *)moduleData).body];
+    }
+    else
+    {
+        heightForRow = [ILCommentEventCell expectedHeightWithText:event.eventId];
+    }
+    
+    
+    
+    return heightForRow;
 }
 
 /*
