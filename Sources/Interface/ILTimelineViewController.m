@@ -23,6 +23,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 @interface ILTimelineViewController ()
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) MLEventCoreDataStorageObject *composerParent;
 @end
 
 @implementation ILTimelineViewController
@@ -74,7 +75,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     {
         UINavigationController *navigationController = segue.destinationViewController;
         ILCommentComposeViewController *controller = (ILCommentComposeViewController *)navigationController.topViewController;
-        controller.parent = self.parent;
+        controller.parent = self.composerParent;
         controller.delegate = self;
     }
 }
@@ -84,7 +85,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (NSFetchedResultsController *)fetchedResultsController
 {
 	if (_fetchedResultsController == nil)
-	{   
+	{
+		//TODO: remove singleton and pass the moc via dependency injection on creation
 		NSManagedObjectContext *moc = [[CLModuleController sharedInstance] managedObjectContext];
         if (moc == nil)
         {
@@ -130,9 +132,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 		{
 			DDLogError(@"Error performing fetch: %@", error);
 		}
-        
 	}
-	
 	return _fetchedResultsController;
 }
 
@@ -142,32 +142,47 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 	[self.tableView reloadData];
 }
 
+- (MLEventCoreDataStorageObject *)eventAtIndexPath:(NSIndexPath *)indexPath
+{
+	MLEventCoreDataStorageObject *parentEvent = [[self.fetchedResultsController fetchedObjects] objectAtIndex:indexPath.section];
+	MLEventCoreDataStorageObject *returnEvent = nil;
+	if (indexPath.row == 0) {
+		returnEvent = parentEvent;
+	} else if (indexPath.row < parentEvent.children.count + 1) {
+		//TODO: need to sort children :-(
+		returnEvent = [[parentEvent.children allObjects] objectAtIndex:indexPath.row - 1];
+	}
+	return returnEvent;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultsController sections] count];
+    return [[self.fetchedResultsController fetchedObjects] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-	NSArray *sections = [[self fetchedResultsController] sections];
+	MLEventCoreDataStorageObject *event = [[self.fetchedResultsController fetchedObjects] objectAtIndex:sectionIndex];
 	
-	if (sectionIndex < [sections count])
-	{
-		id <NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:sectionIndex];
-		return sectionInfo.numberOfObjects;
-	}
-	
-	return 0;
+	return event.children.count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ILCommentCell";
-    ILCommentEventCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    MLEventCoreDataStorageObject *event = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    static NSString *cellIdentifier = @"ILSubCommentCell";
+	static NSString *firstCellIdentifier = @"ILCommentCell";
+    ILCommentEventCell *cell = nil;
+	if (indexPath.row == 0) {
+		cell = [tableView dequeueReusableCellWithIdentifier:firstCellIdentifier forIndexPath:indexPath];
+		cell.backgroundColor = [UIColor blueColor];
+	} else {
+		cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+		cell.backgroundColor = [UIColor redColor];
+	}
+	
+    MLEventCoreDataStorageObject *event = [self eventAtIndexPath:indexPath];
     MLModuleDataCoreDataStorageObject *moduleData = event.moduleData;
     
     if ([moduleData isKindOfClass:[MLCommentCoreDataStorageObject class]]) {
@@ -187,7 +202,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
     float heightForRow = 0.f;
     
-    MLEventCoreDataStorageObject *event = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    MLEventCoreDataStorageObject *event = [self eventAtIndexPath:indexPath];
     MLModuleDataCoreDataStorageObject *moduleData = event.moduleData;
     
     if ([moduleData isKindOfClass:[MLCommentCoreDataStorageObject class]]) {
@@ -246,13 +261,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+	self.composerParent = [self eventAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:indexPath.section]];
+    [self performSegueWithIdentifier: @"ComposeComment" sender: self];
 }
 
 #pragma mark - ILCommentComposeDelegate Methods

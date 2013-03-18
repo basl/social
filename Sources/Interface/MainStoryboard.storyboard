@@ -341,58 +341,6 @@
             </objects>
             <point key="canvasLocation" x="1204" y="189"/>
         </scene>
-        <!--Timeline View Controller - Event-->
-        <scene sceneID="6KV-I5-9Ze">
-            <objects>
-                <tableViewController id="E5i-iP-l57" customClass="ILTimelineViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1JC-Ah-RNb">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ILCommentCell" textLabel="r8A-ex-Ar4" detailTextLabel="sAd-CB-FN3" style="IBUITableViewCellStyleSubtitle" id="iHh-sS-OV9" customClass="ILCommentEventCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r8A-ex-Ar4">
-                                            <rect key="frame" x="10" y="2" width="38" height="22"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sAd-CB-FN3">
-                                            <rect key="frame" x="10" y="24" width="47" height="18"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="E5i-iP-l57" id="sW8-83-2gb"/>
-                            <outlet property="delegate" destination="E5i-iP-l57" id="KRq-c6-FiG"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Event" id="A8P-rh-sNZ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="luz-za-Cgs">
-                            <connections>
-                                <segue destination="vhr-ai-vnL" kind="modal" identifier="ComposeComment" id="lsm-iU-O86"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0mP-vT-Eky" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1661" y="781"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="089-eZ-PpW">
             <objects>
@@ -433,7 +381,7 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ContactsIcon.png" id="6HM-wy-mrZ">
                                                     <rect key="frame" x="2" y="2" width="40" height="40"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="This is a sample message to test the messaging UI. We will see how" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qvv-Yt-B6V">
                                                     <rect key="frame" x="48" y="4" width="243" height="38"/>
@@ -452,7 +400,40 @@
                                 <connections>
                                     <outlet property="attributedTextLabel" destination="qvv-Yt-B6V" id="UB4-G3-v9I"/>
                                     <outlet property="userImageView" destination="6HM-wy-mrZ" id="rNW-5H-0Nl"/>
-                                    <segue destination="E5i-iP-l57" kind="push" identifier="EventChildren" id="gvn-ZJ-nif"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ILSubCommentCell" rowHeight="60" id="tTm-jx-yXX" customClass="ILCommentEventCell">
+                                <rect key="frame" x="0.0" y="82" width="320" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" id="Zyu-lZ-9mI">
+                                            <rect key="frame" x="37" y="8" width="273" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ContactsIcon.png" id="N3e-o6-Ldh">
+                                                    <rect key="frame" x="233" y="2" width="40" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="This is a sample message to test the messaging UI. We will see how" lineBreakMode="tailTruncation" numberOfLines="30" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Luq-E7-VO4">
+                                                    <rect key="frame" x="8" y="4" width="216" height="38"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="attributedTextLabel" destination="Luq-E7-VO4" id="7K3-Ni-IJR"/>
+                                    <outlet property="userImageView" destination="N3e-o6-Ldh" id="LMq-uK-7xW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -469,6 +450,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <connections>
+                        <segue destination="vhr-ai-vnL" kind="modal" identifier="ComposeComment" id="1iC-0N-xfG"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VdX-bB-1ZP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -636,6 +620,7 @@
             <objects>
                 <navigationController id="vhr-ai-vnL" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Dn8-ga-0Pt"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="I9s-AI-q5s">
@@ -733,6 +718,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ehN-m4-THp"/>
+        <segue reference="1iC-0N-xfG"/>
     </inferredMetricsTieBreakers>
 </document>
